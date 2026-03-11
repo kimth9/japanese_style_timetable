@@ -77,6 +77,11 @@ const SERVICE_KEYS = [
 
 const KEY_INDEX = 0;
 
+// 배포 환경과 개발 환경 구분
+const isProd = import.meta.env.PROD;
+const TAGO_BASE = isProd ? "https://apis.data.go.kr" : "/api-tago";
+const RAILBLUE_BASE = isProd ? "https://rail.blue" : "/api-railblue";
+
 export const fetchTrainSchedule = async (
   depStation: string,
   arrStation: string,
@@ -91,8 +96,10 @@ export const fetchTrainSchedule = async (
 
   // 사용자가 제공한 작동하는 URL 형식을 바탕으로 엔드포인트 주소와 대소문자를 정밀 조정합니다.
   const key = SERVICE_KEYS[KEY_INDEX];
-  // 엔드포인트: TrainInfoService/getStrtpntAlocFndTrainInfo -> TrainInfo/GetStrtpntAlocFndTrainInfo 로 변경 시도
-  const url = `/api-tago/1613000/TrainInfo/GetStrtpntAlocFndTrainInfo?serviceKey=${key}&_type=json&depPlaceId=${depNodeId}&arrPlaceId=${arrNodeId}&depPlandTime=${date}&numOfRows=100&pageNo=1`;
+  let url = `${TAGO_BASE}/1613000/TrainInfo/GetStrtpntAlocFndTrainInfo?serviceKey=${key}&_type=json&depPlaceId=${depNodeId}&arrPlaceId=${arrNodeId}&depPlandTime=${date}&numOfRows=100&pageNo=1`;
+
+  // 배포 환경에서 TAGO API 호출 시 CORS 에러가 발생할 수 있으므로, 만약 문제가 있다면 아래 프록시를 활성화할 수 있습니다.
+  // 현재는 직접 호출을 시도합니다. (공공데이터포털은 대게 CORS를 허용함)
 
   console.log(`[TAGO] Requesting: ${depStation} -> ${arrStation} (${date})`);
   console.log(`[TAGO] Using URL: ${url.substring(0, 100)}...`);
@@ -121,23 +128,27 @@ export const fetchTrainSchedule = async (
 };
 
 export const fetchTrainStopsFromRailBlue = async (trainNo: string, date: string) => {
-  const url = `/api-railblue/railroad/logis/getscheduleinfo.aspx?u=1&train=${trainNo}&date=${date}&json=1&version=20180415`;
+  // RailBlue의 경우 CORS 에러가 100% 발생하므로, 배포 환경에서는 AllOrigins 프록시를 사용합니다.
+  let targetUrl = `${RAILBLUE_BASE}/railroad/logis/getscheduleinfo.aspx?u=1&train=${trainNo}&date=${date}&json=1&version=20180415`;
+  
+  const url = isProd 
+    ? `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`
+    : targetUrl;
 
   try {
-    const response = await fetch(url, {
-      headers: {
-        'Accept': 'application/json',
-      }
-    });
+    const response = await fetch(url);
     
     if (!response.ok) {
       const errorText = await response.text();
       throw new Error(`RailBlue Error (${response.status}): ${errorText || "Forbidden"}`);
     }
 
-    const text = await response.text();
+    const resData = await response.json();
+    // AllOrigins 프록시를 사용한 경우 실제 데이터는 contents 필드에 문자열로 들어있음
+    const text = isProd ? resData.contents : JSON.stringify(resData);
+    
     try {
-      const data = JSON.parse(text);
+      const data = typeof text === 'string' ? JSON.parse(text) : text;
       if (!data.s || !Array.isArray(data.s)) {
         throw new Error("상세 경로 정보를 찾을 수 없습니다.");
       }
