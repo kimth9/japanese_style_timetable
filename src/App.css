@@ -1,0 +1,620 @@
+:root {
+  --bg-light: #fdfdfd;
+  --hour-bg: #f1f3f5;
+  --border-main: #333333;
+  --border-sub: #dddddd;
+  --text-main: #222222;
+  --text-muted: #666666;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  width: 95%;
+  background: white;
+  min-height: 100vh;
+  box-shadow: 0 0 20px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto; /* 명확한 중앙 정렬 */
+}
+
+/* Search Page Styles */
+.search-view {
+  background-color: #f0f2f5;
+  background-image: 
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-page {
+  width: 100%;
+  max-width: 1000px;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.main-title {
+  text-align: center;
+  font-weight: 900;
+  font-size: 1.8rem;
+  margin: 0;
+  padding: 12px 30px;
+  background-color: var(--border-main);
+  color: white;
+  border-radius: 4px;
+  letter-spacing: 2px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+.main-title::before, .main-title::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 15px;
+  height: 2px;
+  background-color: rgba(255,255,255,0.5);
+}
+
+.main-title::before { left: 10px; transform: translateY(-50%); }
+.main-title::after { right: 10px; transform: translateY(-50%); }
+
+.search-box-large {
+  width: 100%;
+  max-width: 500px;
+  background: white;
+  padding: 35px;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.search-box-large .input-group {
+  width: 100%;
+}
+
+.search-box-large .input-group label {
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  color: #555;
+  display: block;
+}
+
+.search-box-large .input-group input {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 1.1rem;
+  border: 2px solid #eee;
+  border-radius: 12px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-color: #f9f9f9;
+}
+
+.search-box-large .input-group input:focus {
+  outline: none;
+  border-color: var(--border-main);
+  background-color: white;
+  box-shadow: 0 0 0 4px rgba(0,0,0,0.05);
+}
+
+.search-btn-large {
+  margin-top: 10px;
+  width: 100%;
+  padding: 16px;
+  background-color: var(--border-main);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.1s, background-color 0.2s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.search-btn-large:hover {
+  background-color: #000;
+}
+
+.search-btn-large:active {
+  transform: scale(0.98);
+}
+
+.search-btn-large:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Suggestions list styling for large input */
+.search-box-large .suggestions-list {
+  border-radius: 12px;
+  margin-top: 5px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  border: 1px solid #eee;
+}
+
+.search-box-large .suggestions-list li {
+  padding: 12px 16px;
+  font-size: 1rem;
+  list-style-type: none;
+}
+
+/* Timetable View Layout */
+.timetable-view {
+  background-color: #f0f2f5;
+  background-image: 
+    linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px),
+    linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+.sticky-header-container {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: var(--border-main);
+  color: white;
+}
+
+.back-btn {
+  background: #f8f9fa;
+  border: none;
+  color: var(--border-main);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: 800;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.back-btn:hover {
+  background: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.header-title {
+  font-size: 1rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+/* Header Row Alignment - 4:2:4 Ratio */
+.timetable-header {
+  display: grid;
+  grid-template-columns: 4fr 2fr 4fr;
+  background: white;
+  border-bottom: 2px solid #eee;
+  text-align: center;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.header-col {
+  padding: 15px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+
+.header-col.center {
+  background-color: #f8f9fa;
+  border-left: 1px solid var(--border-sub);
+  border-right: 1px solid var(--border-sub);
+}
+
+.station-label { 
+  font-size: 1.3rem; 
+  font-weight: 900; 
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+}
+
+.time-label { 
+  font-size: 0.75rem; 
+  color: var(--text-muted); 
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.year-label { font-size: 0.8rem; font-weight: 700; color: #888; }
+.date-label { font-size: 1.1rem; font-weight: 800; color: var(--border-main); }
+
+/* Timetable Grid */
+.timetable {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.hour-row {
+  display: grid;
+  grid-template-columns: 4fr 2fr 4fr;
+  min-height: 80px;
+  background: white;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.hour-row:first-child {
+  border-radius: 12px 12px 0 0;
+  border-top: 1px solid #f0f0f0;
+}
+
+.hour-row:last-child {
+  border-radius: 0 0 12px 12px;
+  margin-bottom: 40px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.hour-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  font-weight: 900;
+  background-color: #fcfcfc;
+  color: #bbb; /* 숫자를 연하게 하여 배경 느낌 강조 */
+  border-left: 1px solid #f5f5f5;
+  border-right: 1px solid #f5f5f5;
+  position: relative;
+  line-height: 1;
+}
+
+/* 현재 시간 표시와 유사한 느낌을 위해 숫자 강조 */
+.hour-cell::after {
+  content: "시";
+  margin-left: 0;
+  font-size: 0.9em; /* 숫자에 비해 약간 커 보일 수 있는 한글 크기 미세 조정 */
+  display: inline-block;
+  transform: translateY(-0.05em); /* 숫자와 높이 시각적 정렬 보정 */
+}
+
+.departure-cell, .arrival-cell {
+  padding: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.departure-cell { justify-content: flex-end; }
+.arrival-cell { justify-content: flex-start; }
+
+.train-box {
+  padding: 8px 6px;
+  border-radius: 8px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+  min-height: 70px;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid #eee;
+  transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+}
+
+.train-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+  z-index: 10;
+}
+
+.minute {
+  font-size: 1.4rem;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.train-info, .train-dest {
+  font-size: 0.65rem;
+  text-align: center;
+  word-break: keep-all;
+  line-height: 1.2;
+  color: #777;
+  font-weight: 600;
+}
+
+/* Specific Train Borders & Colors */
+.ktx { border: 2px solid #333; }
+.ktx .minute { color: #333; }
+
+.sancheon { border: 2px solid #003DA5; }
+.sancheon .minute { color: #003DA5; }
+
+.srt { border: 2px solid #4B2F48; }
+.srt .minute { color: #4B2F48; }
+
+.cheongryong { 
+  border: 2px solid #00234e; 
+  background: linear-gradient(180deg, #BCCDE5 0%, #BCCDE5 67%, #E5D9BC 67%, #E5D9BC 70%, #BCCDE5 71%);
+}
+.cheongryong .minute { color: #00234e; }
+
+.eum { 
+  border: 2px solid #00234e;
+  background: linear-gradient(180deg, #BCCDE5 0%, #BCCDE5 33%, #E5D9BC 33%, #E5D9BC 36%, #BCCDE5 37%);
+}
+.eum .minute { color: #00234e; }
+
+.itx-cheongchun { border: 2px solid #37B366; }
+.itx-cheongchun .minute { color: #37B366; }
+
+.itx-saemaul { 
+  border: 2px solid #333; 
+  border-left-width: 5px;
+  border-left-color: #C30E2F;
+}
+.itx-saemaul .minute { color: #C30E2F; }
+
+.itx-maum { 
+  border: 2px solid #C30E2F;
+  background: linear-gradient(180deg, #FFDDE2 0%, #FFDDE2 67%, #E3F2FD 67%, #E3F2FD 70%, #F3F4F6 71%);
+}
+.itx-maum .minute { color: #C30E2F; }
+
+.mugunghwa { border: 1.5px solid #ff9a8b; background: #fff5f3; }
+.mugunghwa .minute { color: #e64a19; }
+
+.nuriro { border: 1.5px solid #3D99C2; background: #f0faff; }
+.nuriro .minute { color: #0077b6; }
+
+/* Popup Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  padding: 15px;
+}
+
+.modal-content {
+  background: white;
+  width: 100%;
+  max-width: 450px;
+  max-height: 85vh;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  background: #f1f3f5;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.modal-header .train-title { 
+  font-size: 1.1rem; 
+  font-weight: 800; 
+  margin-bottom: 8px; 
+  word-break: keep-all;
+  line-height: 1.4;
+}
+
+.modal-header .route-summary { 
+  font-size: 1rem; 
+  font-weight: 700; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  gap: 5px; 
+  flex-wrap: wrap; /* 역 이름이 길면 줄바꿈 허용 */
+}
+
+.modal-body { padding: 20px; overflow-y: auto; flex: 1; }
+.timeline-list { display: flex; flex-direction: column; }
+.station-row { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 12px 0; 
+  border-bottom: 1px solid #f1f3f5;
+}
+.station-name { 
+  font-weight: 800; 
+  font-size: 1.05rem; 
+  flex: 1; 
+  min-width: 0; /* flex 환경에서 텍스트가 넘치지 않게 보장 */
+  word-break: break-all; /* 아주 긴 이름의 경우에도 강제 줄바꿈 */
+  white-space: normal; /* 줄바꿈 허용 */
+  padding-right: 10px;
+  line-height: 1.3;
+}
+
+/* Same font as time-small */
+.station-times {
+  display: flex;
+  gap: 10px;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #666;
+  flex-shrink: 0;
+}
+
+.time-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60px; /* 고정 폭 확보 */
+  min-height: 35px;
+  justify-content: center;
+}
+
+.time-box .time-label-small {
+  font-size: 0.6rem;
+  color: #999;
+  margin-bottom: 2px;
+}
+
+.time-box .time-value {
+  font-size: 0.85rem;
+  color: #333;
+  font-weight: 500;
+}
+.duration-row { padding: 5px 0 5px 20px; font-size: 0.8rem; color: #888; font-weight: 500; border-left: 2px dashed #eee; margin-left: 10px; }
+.modal-footer {
+  display: flex;
+  border-top: 1px solid var(--border-sub);
+}
+
+.modal-footer .close-btn, .modal-footer .railblue-btn {
+  flex: 1;
+  padding: 15px;
+  text-align: center;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.modal-footer .railblue-btn {
+  background: #f8f9fa;
+  color: #0054A6;
+  border-right: 1px solid var(--border-sub);
+}
+
+.modal-footer .railblue-btn:hover {
+  background: #e9ecef;
+}
+
+.modal-footer .close-btn {
+  background: var(--border-main);
+  color: white;
+}
+
+/* Loading Overlay */
+.loading-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+  backdrop-filter: blur(2px);
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid var(--border-main);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-weight: 700;
+  color: var(--text-main);
+  font-size: 1rem;
+}
+
+.short-date {
+  display: none;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 480px) {
+  .hour-row, .timetable-header {
+    grid-template-columns: 4.5fr 1.5fr 4.5fr; /* 시간 열 비중을 줄이고 양 옆 공간 확보 */
+  }
+
+  .departure-cell, .arrival-cell {
+    padding: 8px 2px;
+    gap: 4px;
+  }
+
+  .train-box {
+    /* 부모 너비의 절반(간격 제외) 정도로 크기 조절 */
+    width: calc(50% - 2px); 
+    min-width: 0;
+    min-height: 75px; /* 높이를 충분히 늘림 */
+    padding: 6px 2px;
+  }
+
+  .minute {
+    font-size: 1.25rem; /* 분(시간) 크기 키움 */
+  }
+
+  .train-info, .train-dest {
+    font-size: 0.7rem; /* 열차 정보 및 행선지 크기 키움 */
+    letter-spacing: -0.2px;
+    line-height: 1.1;
+  }
+
+  .hour-cell {
+    font-size: 1.2rem;
+  }
+
+  .station-label {
+    font-size: 0.95rem;
+  }
+
+  /* Date display for mobile */
+  .year-label, .full-date {
+    display: none;
+  }
+
+  .short-date {
+    display: inline !important;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+}
+
