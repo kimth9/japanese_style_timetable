@@ -347,6 +347,7 @@ body {
   font-weight: 900;
   line-height: 1;
   margin-bottom: 4px;
+  color: #000;
 }
 
 .train-info, .train-dest {
@@ -359,48 +360,56 @@ body {
 }
 
 /* Specific Train Borders & Colors */
-.ktx { border: 2px solid #333; }
-.ktx .minute { color: #333; }
+.ktx {
+  border: 2px solid #000; 
+  background: linear-gradient(180deg, #E0E0E0 0%, #E0E0E0 50%, #F0F4F8 50%, #F0F4F8 70%, #BCCCDC 70%  );
+}
 
-.sancheon { border: 2px solid #003DA5; }
-.sancheon .minute { color: #003DA5; }
+.sancheon { 
+  border: 2px solid #003DA5;
+  background: linear-gradient(180deg, #cfedfa 0%, #cfedfa 50%, #F2F2F2 50%, #F2F2F2 70%, #cfedfa 70%  );
+}
 
-.srt { border: 2px solid #4B2F48; }
-.srt .minute { color: #4B2F48; }
+.srt {
+  border: 2px solid #4B2F48;
+  background: linear-gradient(180deg, #D9C5CC 0%, #D9C5CC 50%, #F2F2F2 50%, #F2F2F2 70%, #D9C5CC 70%  );
+}
 
 .cheongryong { 
   border: 2px solid #00234e; 
-  background: linear-gradient(180deg, #BCCDE5 0%, #BCCDE5 67%, #E5D9BC 67%, #E5D9BC 70%, #BCCDE5 71%);
+  background: linear-gradient(180deg, #BCCDE5 0%, #BCCDE5 50%, #E5D9BC 50%, #E5D9BC 70%, #BCCDE5 70%);
 }
-.cheongryong .minute { color: #00234e; }
 
 .eum { 
   border: 2px solid #00234e;
-  background: linear-gradient(180deg, #BCCDE5 0%, #BCCDE5 33%, #E5D9BC 33%, #E5D9BC 36%, #BCCDE5 37%);
+  background: linear-gradient(180deg, #BCCDE5 0%, #BCCDE5 33%, #E5D9BC 33%, #E5D9BC 50%, #BCCDE5 50%);
 }
-.eum .minute { color: #00234e; }
 
-.itx-cheongchun { border: 2px solid #37B366; }
-.itx-cheongchun .minute { color: #37B366; }
+.itx-cheongchun { 
+  border: 2px solid #000; 
+  background: linear-gradient(180deg, #E0F2F1 0%, #E0F2F1 50%, #CFD8DC 50%, #CFD8DC 70%, #E0F2F1 70%);
+}
+
 
 .itx-saemaul { 
-  border: 2px solid #333; 
-  border-left-width: 5px;
-  border-left-color: #C30E2F;
+  border: 2px solid #000; 
+  background: linear-gradient(180deg, #FFEBEE 0%, #FFEBEE 60%, #F5F5F5 60%, #F5F5F5 70%, #EEEEEE 70%);
 }
-.itx-saemaul .minute { color: #C30E2F; }
 
 .itx-maum { 
-  border: 2px solid #C30E2F;
-  background: linear-gradient(180deg, #FFDDE2 0%, #FFDDE2 67%, #E3F2FD 67%, #E3F2FD 70%, #F3F4F6 71%);
+  border: 2px solid #000;
+  background: linear-gradient(180deg, #FFDDE2 0%, #FFDDE2 50%, #E3F2FD 50%, #E3F2FD 70%, #F3F4F6 70%);
 }
-.itx-maum .minute { color: #C30E2F; }
 
-.mugunghwa { border: 1.5px solid #ff9a8b; background: #fff5f3; }
-.mugunghwa .minute { color: #e64a19; }
+.mugunghwa { 
+  border: 1.5px solid #ff9a8b; 
+  background: #fff5f3; 
+}
 
-.nuriro { border: 1.5px solid #3D99C2; background: #f0faff; }
-.nuriro .minute { color: #0077b6; }
+.nuriro { 
+  border: 1.5px solid #3D99C2;
+  background: #f0faff;
+}
 
 /* Popup Styles */
 .modal-overlay {

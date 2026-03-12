@@ -96,7 +96,7 @@ export const fetchTrainSchedule = async (
 
   // 사용자가 제공한 작동하는 URL 형식을 바탕으로 엔드포인트 주소와 대소문자를 정밀 조정합니다.
   const key = SERVICE_KEYS[KEY_INDEX];
-  let url = `${TAGO_BASE}/1613000/TrainInfo/GetStrtpntAlocFndTrainInfo?serviceKey=${key}&_type=json&depPlaceId=${depNodeId}&arrPlaceId=${arrNodeId}&depPlandTime=${date}&numOfRows=100&pageNo=1`;
+  let url = `${TAGO_BASE}/1613000/TrainInfo/GetStrtpntAlocFndTrainInfo?serviceKey=${key}&_type=json&depPlaceId=${depNodeId}&arrPlaceId=${arrNodeId}&depPlandTime=${date}&numOfRows=1000&pageNo=1`;
 
   // 배포 환경에서 TAGO API 호출 시 CORS 에러가 발생할 수 있으므로, 만약 문제가 있다면 아래 프록시를 활성화할 수 있습니다.
   // 현재는 직접 호출을 시도합니다. (공공데이터포털은 대게 CORS를 허용함)
@@ -120,7 +120,9 @@ export const fetchTrainSchedule = async (
     }
 
     const items = data.response.body.items.item;
-    return Array.isArray(items) ? items : items ? [items] : [];
+    const finalItems = Array.isArray(items) ? items : items ? [items] : [];
+    console.log(`[TAGO] Received ${finalItems.length} trains.`);
+    return finalItems;
   } catch (error) {
     console.error("[TAGO] Error:", error);
     throw error;
@@ -128,11 +130,11 @@ export const fetchTrainSchedule = async (
 };
 
 export const fetchTrainStopsFromRailBlue = async (trainNo: string, date: string) => {
-  // RailBlue의 경우 CORS 에러가 100% 발생하므로, 배포 환경에서는 AllOrigins 프록시를 사용합니다.
+  // RailBlue의 경우 CORS 에러가 100% 발생하므로, 배포 환경에서는 더 안정적인 corsproxy.io 프록시를 사용합니다.
   let targetUrl = `${RAILBLUE_BASE}/railroad/logis/getscheduleinfo.aspx?u=1&train=${trainNo}&date=${date}&json=1&version=20180415`;
   
   const url = isProd 
-    ? `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`
+    ? `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`
     : targetUrl;
 
   try {
@@ -143,24 +145,18 @@ export const fetchTrainStopsFromRailBlue = async (trainNo: string, date: string)
       throw new Error(`RailBlue Error (${response.status}): ${errorText || "Forbidden"}`);
     }
 
-    const resData = await response.json();
-    // AllOrigins 프록시를 사용한 경우 실제 데이터는 contents 필드에 문자열로 들어있음
-    const text = isProd ? resData.contents : JSON.stringify(resData);
+    // corsproxy.io는 원본 데이터를 그대로 반환하므로 .json()으로 바로 파싱 가능합니다.
+    const data = await response.json();
     
-    try {
-      const data = typeof text === 'string' ? JSON.parse(text) : text;
-      if (!data.s || !Array.isArray(data.s)) {
-        throw new Error("상세 경로 정보를 찾을 수 없습니다.");
-      }
-      return data.s.map((stop: any) => ({
-        station: stop.s.d || stop.s.i, // d 필드가 있으면 전체 이름 사용, 없으면 i 필드 사용
-        arrTime: stop.a ? stop.a.substring(0, 5) : "--:--",
-        depTime: stop.b ? stop.b.substring(0, 5) : "--:--",
-        stopType: stop.stop
-      })).filter((stop: any) => stop.stopType !== 'skip');
-    } catch (e) {
-      throw new Error(`JSON 파싱 실패: ${text.substring(0, 50)}...`);
+    if (!data.s || !Array.isArray(data.s)) {
+      throw new Error("상세 경로 정보를 찾을 수 없습니다.");
     }
+    return data.s.map((stop: any) => ({
+      station: stop.s.d || stop.s.i, // d 필드가 있으면 전체 이름 사용, 없으면 i 필드 사용
+      arrTime: stop.a ? stop.a.substring(0, 5) : "--:--",
+      depTime: stop.b ? stop.b.substring(0, 5) : "--:--",
+      stopType: stop.stop
+    })).filter((stop: any) => stop.stopType !== 'skip');
   } catch (error) {
     console.error("RailBlue API error:", error);
     throw error;

@@ -13,16 +13,18 @@ interface StationStop {
 
 interface Train {
   id: string;
-  type: string; // This will now hold the mapped short name
+  type: string; 
   trainNo: string;
   destination: string;
   depTime: string;
   arrTime: string;
-  originalType: string; // Store original type for class mapping
+  originalType: string;
+  isDestinationLoaded?: boolean;
 }
 
+const DESTINATION_CACHE: Record<string, string> = {};
+
 const mapTrainType = (id: string | undefined, name: string) => {
-  // 1. ID 기반 매핑 시도
   if (id) {
     switch (id) {
       case "00": return "KTX";
@@ -41,8 +43,6 @@ const mapTrainType = (id: string | undefined, name: string) => {
       case "19": return "청룡";
     }
   }
-
-  // 2. 이름 기반 매핑 (ID가 없거나 ID 매핑에 없는 경우)
   if (name.includes("KTX-산천(A-type)")) return "A산천";
   if (name.includes("KTX-산천(B-type)")) return "B산천";
   if (name.includes("KTX-산천")) return "산천";
@@ -51,7 +51,6 @@ const mapTrainType = (id: string | undefined, name: string) => {
   if (name.includes("ITX-마음")) return "마음";
   if (name.includes("KTX-이음")) return "이음";
   if (name.includes("KTX-청룡")) return "청룡";
-  
   return name;
 };
 
@@ -70,35 +69,18 @@ const getTrainClass = (type: string) => {
   return '';
 };
 
-const formatDestination = (dest: string) => {
-  return dest;
-};
-
-const formatTime = (timeStr: string) => {
-  return `${timeStr.substring(8, 10)}:${timeStr.substring(10, 12)}`;
-};
-
+const formatDestination = (dest: string) => dest;
+const formatTime = (timeStr: string) => `${timeStr.substring(8, 10)}:${timeStr.substring(10, 12)}`;
 const formatTrainNo = (trainNo: string) => {
-  // 1. 숫자 이외의 문자 제거 및 정수로 변환하여 앞의 0들을 모두 제거
   const val = parseInt(trainNo.replace(/[^0-9]/g, ''), 10);
-  if (isNaN(val)) return trainNo; // 숫자가 아니면 원본 반환
-
+  if (isNaN(val)) return trainNo;
   const s = String(val);
-  // 2. 숫자의 길이에 따라 3자리 혹은 4자리로 포맷팅
-  if (s.length <= 3) {
-    return s.padStart(3, '0');
-  }
-  // 4자리 이상인 경우 4자리로 유지 (사용자 요청에 따라 5자리는 4자리로 취급되거나 그대로 표시)
-  return s.padStart(4, '0');
+  return s.length <= 3 ? s.padStart(3, '0') : s.padStart(4, '0');
 };
-
-const formatTrainType = (type: string) => {
-  return type;
-};
-
+const formatTrainType = (type: string) => type;
 const getDayOfWeek = (dateString: string) => {
   const year = parseInt(dateString.substring(0, 4));
-  const month = parseInt(dateString.substring(4, 6)) - 1; // Month is 0-indexed
+  const month = parseInt(dateString.substring(4, 6)) - 1; 
   const day = parseInt(dateString.substring(6, 8));
   const date = new Date(year, month, day);
   const days = ['일', '월', '화', '수', '목', '금', '토'];
@@ -175,17 +157,39 @@ function App() {
   const [trains, setTrains] = useState<Train[]>([]);
   const [loading, setLoading] = useState(false);
 
-  // 새벽 시간을 24시 이후로 보정하는 함수 (0-4시를 24-28시로 변환)
   const getAdjustedHour = (timeStr: string) => {
+    if (!timeStr || !timeStr.includes(':')) return 0;
     let hour = parseInt(timeStr.split(':')[0]);
-    if (hour >= 0 && hour <= 4) {
-      return hour + 24;
-    }
+    if (hour >= 0 && hour <= 3) return hour + 24;
     return hour;
   };
 
-  // 5시부터 다음날 새벽 4시(28시)까지 표시
-  const hours = Array.from({ length: 24 }, (_, i) => i + 5);
+  const hours = Array.from({ length: 28 }, (_, i) => i);
+
+  const updateDestinationsBackground = async (initialTrains: Train[], date: string) => {
+    const chunkSize = 3;
+    for (let i = 0; i < initialTrains.length; i += chunkSize) {
+      const chunk = initialTrains.slice(i, i + chunkSize);
+      await Promise.all(chunk.map(async (train) => {
+        if (train.isDestinationLoaded) return;
+        try {
+          const stops = await fetchTrainStopsFromRailBlue(train.trainNo, date);
+          if (stops && stops.length > 0) {
+            const dest = `${stops[stops.length - 1].station}행`;
+            DESTINATION_CACHE[train.trainNo] = dest;
+            setTrains(prevTrains => prevTrains.map(t => 
+              t.trainNo === train.trainNo 
+                ? { ...t, destination: dest, isDestinationLoaded: true } 
+                : t
+            ));
+          }
+        } catch (e) {
+          console.error(`Background update failed for train #${train.trainNo}:`, e);
+        }
+      }));
+      await new Promise(res => setTimeout(res, 100));
+    }
+  };
 
   const loadData = async () => {
     if (!depStation || !arrStation) {
@@ -195,6 +199,7 @@ function App() {
     setLoading(true);
     try {
       const data = await fetchTrainSchedule(depStation, arrStation, targetDate);
+      console.log("[App] API Data received:", data);
       
       if (!data || data.length === 0) {
         alert(`${depStation}역에서 ${arrStation}역으로 향하는 직통열차가 없습니다.`);
@@ -203,38 +208,30 @@ function App() {
         return;
       }
 
-      // 1. TAGO 데이터를 기반으로 기본 열차 목록 생성
-      const baseTrains = data.map((item: TagoTrainInfo, index: number) => ({
-        id: `${item.trainno}-${index}`,
-        type: mapTrainType(item.vehiclekndid, item.traingradename),
-        trainNo: String(item.trainno),
-        destination: `${item.arrplacename}행`, // 임시 행선지
-        depTime: formatTime(String(item.depplandtime)),
-        arrTime: formatTime(String(item.arrplandtime)),
-        originalType: item.traingradename
-      }));
+      const baseTrains: Train[] = data.map((item: TagoTrainInfo, index: number) => {
+        const cachedDest = DESTINATION_CACHE[String(item.trainno)];
+        return {
+          id: `${item.trainno}-${index}`,
+          type: mapTrainType(item.vehiclekndid, item.traingradename),
+          trainNo: String(item.trainno),
+          destination: cachedDest || `${item.arrplacename}행`,
+          depTime: formatTime(String(item.depplandtime)),
+          arrTime: formatTime(String(item.arrplandtime)),
+          originalType: item.traingradename,
+          isDestinationLoaded: !!cachedDest
+        };
+      });
 
-      // 2. 모든 열차에 대해 RailBlue에서 실제 종착역 정보를 병렬로 가져옴
-      const updatedTrains = await Promise.all(
-        baseTrains.map(async (train) => {
-          try {
-            const stops = await fetchTrainStopsFromRailBlue(train.trainNo, targetDate);
-            if (stops && stops.length > 0) {
-              const lastStop = stops[stops.length - 1];
-              return { ...train, destination: `${lastStop.station}행` };
-            }
-          } catch (e) {
-            console.error(`종착역 정보 조회 실패 (#${train.trainNo}):`, e);
-          }
-          return train; // 실패 시 TAGO 정보 유지
-        })
-      );
+      console.log("[App] Formatted trains count:", baseTrains.length);
+      setTrains(baseTrains);
+      setView('timetable');
+      setLoading(false);
 
-      setTrains(updatedTrains);
-      setView('timetable'); 
+      updateDestinationsBackground(baseTrains, targetDate);
+      
     } catch (error) {
+      console.error("[App] Load error:", error);
       alert(error instanceof Error ? error.message : '데이터를 가져오는데 실패했습니다.');
-    } finally {
       setLoading(false);
     }
   };
@@ -248,7 +245,6 @@ function App() {
     setSelectedTrain(train);
     setLoadingStops(true);
     setSelectedTrainStops([]);
-    
     try {
       const stops = await fetchTrainStopsFromRailBlue(train.trainNo, targetDate);
       if (stops && stops.length > 0) {
@@ -293,7 +289,7 @@ function App() {
         <>
           <div className="sticky-header-container">
             <div className="header-top-bar">
-              <div style={{ width: '80px' }}></div> {/* 좌측 밸런스용 공간 */}
+              <div style={{ width: '80px' }}></div>
               <h2 className="header-title">운행 시간표</h2>
               <button className="back-btn" onClick={() => setView('search')}>재검색</button>
             </div>
@@ -320,9 +316,7 @@ function App() {
             {hours.map(hour => {
               const departures = trains.filter(t => getAdjustedHour(t.depTime) === hour);
               const arrivals = trains.filter(t => getAdjustedHour(t.arrTime) === hour);
-
               if (departures.length === 0 && arrivals.length === 0) return null;
-
               return (
                 <div key={hour} className="hour-row">
                   <div className="departure-cell">
@@ -370,9 +364,7 @@ function App() {
                 <div className="timeline-list">
                   {selectedTrainStops.map((stop, idx) => (
                     <div key={idx} className="station-row">
-                      <div className="station-name" style={{ whiteSpace: 'normal', wordBreak: 'keep-all' }}>
-                        {stop.station}
-                      </div>
+                      <div className="station-name" style={{ whiteSpace: 'normal', wordBreak: 'keep-all' }}>{stop.station}</div>
                       <div className="station-times">
                         <div className="time-box">
                           {idx !== 0 && stop.arrTime !== '--:--' && (
@@ -399,14 +391,7 @@ function App() {
               )}
             </div>
             <div className="modal-footer">
-              <a 
-                href={`https://rail.blue/railroad/logis/scheduleinfo.aspx?date=${targetDate}&train=${formatTrainNo(selectedTrain.trainNo)}#!`}
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="railblue-btn"
-              >
-                레일블루 바로가기
-              </a>
+              <a href={`https://rail.blue/railroad/logis/scheduleinfo.aspx?date=${targetDate}&train=${formatTrainNo(selectedTrain.trainNo)}#!`} target="_blank" rel="noopener noreferrer" className="railblue-btn">레일블루 바로가기</a>
               <div className="close-btn" onClick={() => setSelectedTrain(null)}>창 닫기</div>
             </div>
           </div>
@@ -417,4 +402,3 @@ function App() {
 }
 
 export default App;
-
