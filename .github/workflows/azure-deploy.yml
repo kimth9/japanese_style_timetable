@@ -34,11 +34,12 @@ jobs:
           path: |
             .
             !node_modules/
-            !src/
             dist/
             api/
+            src/
             package.json
             package-lock.json
+            station_rank.json
 
   deploy:
     runs-on: ubuntu-latest

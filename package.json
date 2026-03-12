@@ -8,7 +8,7 @@
     "dev:backend": "tsx api/server.ts",
     "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
     "build": "tsc && vite build",
-    "start": "node api/server.ts"
+    "start": "tsx api/server.ts"
   },
   "engines": {
     "node": ">=22.0.0"
