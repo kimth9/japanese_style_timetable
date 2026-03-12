@@ -7,15 +7,17 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "postinstall": "cd railblue-proxy && npm install",
-    "start": "cd railblue-proxy && node index.js"
+    "start": "node railblue-proxy/index.js"
   },
   "engines": {
     "node": ">=22.0.0"
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "axios": "^1.6.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.0",
