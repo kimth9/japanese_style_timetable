@@ -5,11 +5,20 @@ const axios = require('axios');
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(cors());
+// CORS 설정 강화
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 // Health Check
 app.get('/ping', (req, res) => {
   res.send('pong');
+});
+
+app.get('/', (req, res) => {
+  res.send('Azure Proxy Server is Running');
 });
 
 // [추가] TAGO 열차 스케줄 프록시 엔드포인트
