@@ -98,9 +98,18 @@ export const fetchTrainSchedule = async (
   const key = SERVICE_KEYS[KEY_INDEX];
   
   // Azure 프록시를 통한 호출 (isProd일 때)
-  const url = isProd
-    ? `${AZURE_BASE_URL}/api/tago?serviceKey=${key}&depPlaceId=${depNodeId}&arrPlaceId=${arrNodeId}&depPlandTime=${date}`
-    : `${TAGO_BASE}/1613000/TrainInfo/GetStrtpntAlocFndTrainInfo?serviceKey=${key}&_type=json&depPlaceId=${depNodeId}&arrPlaceId=${arrNodeId}&depPlandTime=${date}&numOfRows=1000&pageNo=1`;
+  let url = "";
+  if (isProd) {
+    const targetUrl = new URL(`${AZURE_BASE_URL}/api/tago`);
+    // 이미 인코딩된 키를 decode하여 URLSearchParams가 표준에 맞게 다시 인코딩하도록 함
+    targetUrl.searchParams.set("serviceKey", decodeURIComponent(key));
+    targetUrl.searchParams.set("depPlaceId", depNodeId);
+    targetUrl.searchParams.set("arrPlaceId", arrNodeId);
+    targetUrl.searchParams.set("depPlandTime", date);
+    url = targetUrl.toString();
+  } else {
+    url = `${TAGO_BASE}/1613000/TrainInfo/GetStrtpntAlocFndTrainInfo?serviceKey=${key}&_type=json&depPlaceId=${depNodeId}&arrPlaceId=${arrNodeId}&depPlandTime=${date}&numOfRows=1000&pageNo=1`;
+  }
 
   console.log(`[API] Requesting Schedule: ${depStation} -> ${arrStation} (${date})`);
   

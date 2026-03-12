@@ -6,11 +6,19 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // CORS 설정 강화
-app.use(cors({
+const corsOptions = {
   origin: '*',
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  credentials: false
+};
+app.use(cors(corsOptions));
+
+// 모든 에러 핸들러에서도 CORS 보장
+app.use((err, req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.status(500).json({ error: 'Internal Server Error', details: err.message });
+});
 
 // Health Check
 app.get('/ping', (req, res) => {
