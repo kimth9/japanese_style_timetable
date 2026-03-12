@@ -1,161 +1,32 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import { fetchTrainSchedule, TagoTrainInfo, fetchTrainStopsFromRailBlue } from './api';
-import { searchStations } from './utils/search';
-
-interface StationStop {
-  station: string;
-  arrTime: string;
-  depTime: string;
-  stopType?: string;
-  durationFromPrev?: number;
-}
-
-interface Train {
-  id: string;
-  type: string; 
-  trainNo: string;
-  destination: string;
-  depTime: string;
-  arrTime: string;
-  originalType: string;
-  isDestinationLoaded?: boolean;
-}
-
-const DESTINATION_CACHE: Record<string, string> = {};
-
-const mapTrainType = (id: string | undefined, name: string) => {
-  if (id) {
-    switch (id) {
-      case "00": return "KTX";
-      case "01": return "새마을";
-      case "02": return "무궁화";
-      case "03": return "통근";
-      case "04": return "누리로";
-      case "06": return "AREX직통";
-      case "07": return "A산천";
-      case "08": return "I새마을";
-      case "09": return "I청춘";
-      case "10": return "B산천";
-      case "16": return "이음";
-      case "17": return "SRT";
-      case "18": return "마음";
-      case "19": return "청룡";
-    }
-  }
-  if (name.includes("KTX-산천(A-type)")) return "A산천";
-  if (name.includes("KTX-산천(B-type)")) return "B산천";
-  if (name.includes("KTX-산천")) return "산천";
-  if (name.includes("ITX-새마을")) return "I새마을";
-  if (name.includes("ITX-청춘")) return "I청춘";
-  if (name.includes("ITX-마음")) return "마음";
-  if (name.includes("KTX-이음")) return "이음";
-  if (name.includes("KTX-청룡")) return "청룡";
-  return name;
-};
-
-const getTrainClass = (type: string) => {
-  const t = type.toLowerCase();
-  if (t.includes('ktx-산천') || t.includes('a산천') || t.includes('b산천')) return 'sancheon';
-  if (t.includes('ktx-이음') || t.includes('이음')) return 'eum';
-  if (t.includes('ktx-청룡') || t.includes('청룡')) return 'cheongryong';
-  if (t.includes('ktx')) return 'ktx';
-  if (t.includes('srt')) return 'srt';
-  if (t.includes('itx-청춘') || t.includes('i청춘')) return 'itx-cheongchun';
-  if (t.includes('itx-마음') || t.includes('마음')) return 'itx-maum';
-  if (t.includes('itx-새마을') || t.includes('i새마을') || t.includes('새마을')) return 'itx-saemaul';
-  if (t.includes('무궁화')) return 'mugunghwa';
-  if (t.includes('누리로')) return 'nuriro';
-  return '';
-};
-
-const formatDestination = (dest: string) => dest;
-const formatTime = (timeStr: string) => `${timeStr.substring(8, 10)}:${timeStr.substring(10, 12)}`;
-const formatTrainNo = (trainNo: string) => {
-  const val = parseInt(trainNo.replace(/[^0-9]/g, ''), 10);
-  if (isNaN(val)) return trainNo;
-  const s = String(val);
-  return s.length <= 3 ? s.padStart(3, '0') : s.padStart(4, '0');
-};
-const formatTrainType = (type: string) => type;
-const getDayOfWeek = (dateString: string) => {
-  const year = parseInt(dateString.substring(0, 4));
-  const month = parseInt(dateString.substring(4, 6)) - 1; 
-  const day = parseInt(dateString.substring(6, 8));
-  const date = new Date(year, month, day);
-  const days = ['일', '월', '화', '수', '목', '금', '토'];
-  return days[date.getDay()];
-};
-
-interface StationInputProps {
-  label: string;
-  value: string;
-  onChange: (val: string) => void;
-  placeholder: string;
-}
-
-const StationInput = ({ label, value, onChange, placeholder }: StationInputProps) => {
-  const [suggestions, setSuggestions] = useState<string[]>([]);
-  const [showSuggestions, setShowSuggestions] = useState(false);
-  const wrapperRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
-        setShowSuggestions(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const query = e.target.value;
-    onChange(query);
-    if (query) {
-      setSuggestions(searchStations(query).slice(0, 10)); 
-      setShowSuggestions(true);
-    } else {
-      setSuggestions([]);
-      setShowSuggestions(false);
-    }
-  };
-
-  const handleSelect = (station: string) => {
-    onChange(station);
-    setShowSuggestions(false);
-  };
-
-  return (
-    <div className="input-group station-input-wrapper" ref={wrapperRef}>
-      <label>{label}</label>
-      <input 
-        value={value} 
-        onChange={handleInputChange} 
-        onFocus={() => value && setShowSuggestions(true)}
-        placeholder={placeholder} 
-      />
-      {showSuggestions && suggestions.length > 0 && (
-        <ul className="suggestions-list">
-          {suggestions.map((s, i) => (
-            <li key={i} onClick={() => handleSelect(s)}>{s.replace(/^·\s*/, '')}</li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-};
+import { apiClient } from './services/apiClient';
+import { Train, TrainStop } from './shared/types';
+import StationInput from './components/StationInput';
+import TrainBox from './components/TrainBox';
+import TrainModal from './components/TrainModal';
 
 function App() {
   const [view, setView] = useState<'search' | 'timetable'>('search');
-  const [selectedTrain, setSelectedTrain] = useState<Train | null>(null);
-  const [selectedTrainStops, setSelectedTrainStops] = useState<StationStop[]>([]);
-  const [loadingStops, setLoadingStops] = useState(false);
   const [depStation, setDepStation] = useState('');
   const [arrStation, setArrStation] = useState('');
   const [targetDate, setTargetDate] = useState('');
   const [trains, setTrains] = useState<Train[]>([]);
   const [loading, setLoading] = useState(false);
+  
+  const [selectedTrain, setSelectedTrain] = useState<Train | null>(null);
+  const [selectedTrainStops, setSelectedTrainStops] = useState<TrainStop[]>([]);
+  const [loadingStops, setLoadingStops] = useState(false);
+
+  const getDayOfWeek = (dateString: string) => {
+    if (dateString.length !== 8) return '';
+    const year = parseInt(dateString.substring(0, 4));
+    const month = parseInt(dateString.substring(4, 6)) - 1; 
+    const day = parseInt(dateString.substring(6, 8));
+    const date = new Date(year, month, day);
+    const days = ['일', '월', '화', '수', '목', '금', '토'];
+    return days[date.getDay()];
+  };
 
   const getAdjustedHour = (timeStr: string) => {
     if (!timeStr || !timeStr.includes(':')) return 0;
@@ -166,79 +37,27 @@ function App() {
 
   const hours = Array.from({ length: 28 }, (_, i) => i);
 
-  const updateDestinationsBackground = async (initialTrains: Train[], date: string) => {
-    const chunkSize = 3;
-    for (let i = 0; i < initialTrains.length; i += chunkSize) {
-      const chunk = initialTrains.slice(i, i + chunkSize);
-      await Promise.all(chunk.map(async (train) => {
-        if (train.isDestinationLoaded) return;
-        try {
-          const stops = await fetchTrainStopsFromRailBlue(train.trainNo, date);
-          if (stops && stops.length > 0) {
-            const dest = `${stops[stops.length - 1].station}행`;
-            DESTINATION_CACHE[train.trainNo] = dest;
-            setTrains(prevTrains => prevTrains.map(t => 
-              t.trainNo === train.trainNo 
-                ? { ...t, destination: dest, isDestinationLoaded: true } 
-                : t
-            ));
-          }
-        } catch (e) {
-          console.error(`Background update failed for train #${train.trainNo}:`, e);
-        }
-      }));
-      await new Promise(res => setTimeout(res, 100));
-    }
-  };
-
-  const loadData = async () => {
-    if (!depStation || !arrStation) {
-      alert('출발역과 도착역을 입력해주세요.');
+  const handleSearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!depStation || !arrStation || !targetDate) {
+      alert('모든 필드를 입력해주세요.');
       return;
     }
+
     setLoading(true);
     try {
-      const data = await fetchTrainSchedule(depStation, arrStation, targetDate);
-      console.log("[App] API Data received:", data);
-      
-      if (!data || data.length === 0) {
+      const response = await apiClient.fetchTimetable({ depStation, arrStation, date: targetDate });
+      if (response.trains.length === 0) {
         alert(`${depStation}역에서 ${arrStation}역으로 향하는 직통열차가 없습니다.`);
-        setTrains([]);
-        setLoading(false);
-        return;
+      } else {
+        setTrains(response.trains);
+        setView('timetable');
       }
-
-      const baseTrains: Train[] = data.map((item: TagoTrainInfo, index: number) => {
-        const cachedDest = DESTINATION_CACHE[String(item.trainno)];
-        return {
-          id: `${item.trainno}-${index}`,
-          type: mapTrainType(item.vehiclekndid, item.traingradename),
-          trainNo: String(item.trainno),
-          destination: cachedDest || `${item.arrplacename}행`,
-          depTime: formatTime(String(item.depplandtime)),
-          arrTime: formatTime(String(item.arrplandtime)),
-          originalType: item.traingradename,
-          isDestinationLoaded: !!cachedDest
-        };
-      });
-
-      console.log("[App] Formatted trains count:", baseTrains.length);
-      setTrains(baseTrains);
-      setView('timetable');
-      setLoading(false);
-
-      updateDestinationsBackground(baseTrains, targetDate);
-      
-    } catch (error) {
-      console.error("[App] Load error:", error);
-      alert(error instanceof Error ? error.message : '데이터를 가져오는데 실패했습니다.');
+    } catch (err: any) {
+      alert(err.message);
+    } finally {
       setLoading(false);
     }
-  };
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    loadData();
   };
 
   const handleTrainClick = async (train: Train) => {
@@ -246,17 +65,14 @@ function App() {
     setLoadingStops(true);
     setSelectedTrainStops([]);
     try {
-      const stops = await fetchTrainStopsFromRailBlue(train.trainNo, targetDate);
-      if (stops && stops.length > 0) {
-        setSelectedTrainStops(stops);
-        const lastStop = stops[stops.length - 1];
-        if (lastStop && lastStop.station) {
-          setSelectedTrain(prev => prev ? { ...prev, destination: `${lastStop.station}행` } : null);
-        }
+      const stops = await apiClient.fetchTrainStops(train.trainNo, targetDate);
+      setSelectedTrainStops(stops);
+      const lastStop = stops[stops.length - 1];
+      if (lastStop) {
+        setSelectedTrain(prev => prev ? { ...prev, destination: `${lastStop.station}행` } : null);
       }
     } catch (error) {
       console.error(error);
-      alert("상세 경로 정보를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.");
     } finally {
       setLoadingStops(false);
     }
@@ -322,21 +138,13 @@ function App() {
                 <div key={hour} className="hour-row">
                   <div className="departure-cell">
                     {departures.map(train => (
-                      <div key={`dep-${train.id}`} className={`train-box ${getTrainClass(train.type)}`} onClick={() => handleTrainClick(train)}>
-                        <span className="minute">{train.depTime.split(':')[1]}</span>
-                        <span className="train-info">{formatTrainType(train.type)}#{formatTrainNo(train.trainNo)}</span>
-                        <span className="train-dest">{formatDestination(train.destination)}</span>
-                      </div>
+                      <TrainBox key={`dep-${train.id}`} train={train} type="dep" onClick={handleTrainClick} />
                     ))}
                   </div>
                   <div className="hour-cell">{hour}</div>
                   <div className="arrival-cell">
                     {arrivals.map(train => (
-                      <div key={`arr-${train.id}`} className={`train-box ${getTrainClass(train.type)}`} onClick={() => handleTrainClick(train)}>
-                        <span className="minute">{train.arrTime.split(':')[1]}</span>
-                        <span className="train-info">{formatTrainType(train.type)}#{formatTrainNo(train.trainNo)}</span>
-                        <span className="train-dest">{formatDestination(train.destination)}</span>
-                      </div>
+                      <TrainBox key={`arr-${train.id}`} train={train} type="arr" onClick={handleTrainClick} />
                     ))}
                   </div>
                 </div>
@@ -347,56 +155,15 @@ function App() {
       )}
 
       {selectedTrain && (
-        <div className="modal-overlay" onClick={() => setSelectedTrain(null)}>
-          <div className="modal-content" onClick={e => e.stopPropagation()}>
-            <div className="modal-header">
-              <div className="train-title">{selectedTrain.type}#{formatTrainNo(selectedTrain.trainNo)} {depStation}→{selectedTrain.destination}</div>
-              <div className="route-summary">
-                {depStation} <span className="time-small">({selectedTrain.depTime})</span> 
-                <span> → </span> 
-                {arrStation} <span className="time-small">({selectedTrain.arrTime})</span>
-              </div>
-            </div>
-
-            <div className="modal-body">
-              {loadingStops ? (
-                <p style={{ textAlign: 'center', padding: '20px' }}>전체 경로 정보를 불러오는 중입니다...</p>
-              ) : selectedTrainStops.length > 0 ? (
-                <div className="timeline-list">
-                  {selectedTrainStops.map((stop, idx) => (
-                    <div key={idx} className="station-row">
-                      <div className="station-name" style={{ whiteSpace: 'normal', wordBreak: 'keep-all' }}>{stop.station}</div>
-                      <div className="station-times">
-                        <div className="time-box">
-                          {idx !== 0 && stop.arrTime !== '--:--' && (
-                            <>
-                              <span className="time-label-small">도착</span>
-                              <span className="time-value">{stop.arrTime}</span>
-                            </>
-                          )}
-                        </div>
-                        <div className="time-box">
-                          {idx !== selectedTrainStops.length - 1 && stop.depTime !== '--:--' && (
-                            <>
-                              <span className="time-label-small">출발</span>
-                              <span className="time-value">{stop.depTime}</span>
-                            </>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <p style={{ textAlign: 'center', padding: '20px' }}>경로 정보를 불러올 수 없습니다.</p>
-              )}
-            </div>
-            <div className="modal-footer">
-              <a href={`https://rail.blue/railroad/logis/scheduleinfo.aspx?date=${targetDate}&train=${formatTrainNo(selectedTrain.trainNo)}#!`} target="_blank" rel="noopener noreferrer" className="railblue-btn">레일블루 바로가기</a>
-              <div className="close-btn" onClick={() => setSelectedTrain(null)}>창 닫기</div>
-            </div>
-          </div>
-        </div>
+        <TrainModal 
+          train={selectedTrain}
+          stops={selectedTrainStops}
+          loading={loadingStops}
+          depStation={depStation}
+          arrStation={arrStation}
+          targetDate={targetDate}
+          onClose={() => setSelectedTrain(null)}
+        />
       )}
     </div>
   );
