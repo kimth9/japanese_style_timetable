@@ -79,8 +79,9 @@ const KEY_INDEX = 0;
 
 // 배포 환경과 개발 환경 구분
 const isProd = import.meta.env.PROD;
-const TAGO_BASE = isProd ? "https://apis.data.go.kr" : "/api-tago";
-const RAILBLUE_BASE = isProd ? "https://rail.blue" : "/api-railblue";
+const AZURE_BASE_URL = "https://jsrailtimetable.azurewebsites.net";
+const TAGO_BASE = isProd ? AZURE_BASE_URL : "/api-tago";
+const RAILBLUE_BASE = isProd ? AZURE_BASE_URL : "/api-railblue";
 
 export const fetchTrainSchedule = async (
   depStation: string,
@@ -94,71 +95,51 @@ export const fetchTrainSchedule = async (
     throw new Error("유효하지 않은 역 이름입니다.");
   }
 
-  // 사용자가 제공한 작동하는 URL 형식을 바탕으로 엔드포인트 주소와 대소문자를 정밀 조정합니다.
   const key = SERVICE_KEYS[KEY_INDEX];
-  let url = `${TAGO_BASE}/1613000/TrainInfo/GetStrtpntAlocFndTrainInfo?serviceKey=${key}&_type=json&depPlaceId=${depNodeId}&arrPlaceId=${arrNodeId}&depPlandTime=${date}&numOfRows=1000&pageNo=1`;
+  
+  // Azure 프록시를 통한 호출 (isProd일 때)
+  const url = isProd
+    ? `${AZURE_BASE_URL}/api/tago?serviceKey=${key}&depPlaceId=${depNodeId}&arrPlaceId=${arrNodeId}&depPlandTime=${date}`
+    : `${TAGO_BASE}/1613000/TrainInfo/GetStrtpntAlocFndTrainInfo?serviceKey=${key}&_type=json&depPlaceId=${depNodeId}&arrPlaceId=${arrNodeId}&depPlandTime=${date}&numOfRows=1000&pageNo=1`;
 
-  // 배포 환경에서 TAGO API 호출 시 CORS 에러가 발생할 수 있으므로, 만약 문제가 있다면 아래 프록시를 활성화할 수 있습니다.
-  // 현재는 직접 호출을 시도합니다. (공공데이터포털은 대게 CORS를 허용함)
-
-  console.log(`[TAGO] Requesting: ${depStation} -> ${arrStation} (${date})`);
-  console.log(`[TAGO] Using URL: ${url.substring(0, 100)}...`);
-
+  console.log(`[API] Requesting Schedule: ${depStation} -> ${arrStation} (${date})`);
+  
   try {
     const response = await fetch(url);
-    const text = await response.text();
+    const data = await response.json();
     
-    // 응답이 JSON이 아닌 경우 (Forbidden 등 에러 페이지)
-    if (!response.ok || text.startsWith("<") || text.includes("Forbidden") || text.includes("SERVICE_KEY_IS_NOT_REGISTERED_ERROR")) {
-      console.error(`[TAGO] Error Details:\nStatus: ${response.status}\nResponse: ${text.substring(0, 200)}`);
-      throw new Error(`API 인증 실패 (${response.status}):\n데이터 포털에서 'Encoding 키'를 제대로 복사했는지 확인해주시고, 승인 직후라면 약 1시간 정도 기다려주세요.`);
-    }
-
-    const data = JSON.parse(text);
     if (data.response?.header?.resultCode !== "00") {
       throw new Error(data.response?.header?.resultMsg || "API 호출 실패");
     }
 
     const items = data.response.body.items.item;
-    const finalItems = Array.isArray(items) ? items : items ? [items] : [];
-    console.log(`[TAGO] Received ${finalItems.length} trains.`);
-    return finalItems;
+    return Array.isArray(items) ? items : items ? [items] : [];
   } catch (error) {
-    console.error("[TAGO] Error:", error);
+    console.error("[API] Schedule Error:", error);
     throw error;
   }
 };
 
 export const fetchTrainStopsFromRailBlue = async (trainNo: string, date: string) => {
-  // RailBlue의 경우 CORS 에러가 100% 발생하므로, 배포 환경에서는 더 안정적인 corsproxy.io 프록시를 사용합니다.
-  let targetUrl = `${RAILBLUE_BASE}/railroad/logis/getscheduleinfo.aspx?u=1&train=${trainNo}&date=${date}&json=1&version=20180415`;
-  
   const url = isProd 
-    ? `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`
-    : targetUrl;
+    ? `${AZURE_BASE_URL}/api/railblue?train=${trainNo}&date=${date}`
+    : `${RAILBLUE_BASE}/railroad/logis/getscheduleinfo.aspx?u=1&train=${trainNo}&date=${date}&json=1&version=20180415`;
 
   try {
     const response = await fetch(url);
-    
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`RailBlue Error (${response.status}): ${errorText || "Forbidden"}`);
-    }
+    if (!response.ok) throw new Error(`RailBlue Proxy Error (${response.status})`);
 
-    // corsproxy.io는 원본 데이터를 그대로 반환하므로 .json()으로 바로 파싱 가능합니다.
     const data = await response.json();
-    
-    if (!data.s || !Array.isArray(data.s)) {
-      throw new Error("상세 경로 정보를 찾을 수 없습니다.");
-    }
+    if (!data.s || !Array.isArray(data.s)) throw new Error("상세 경로 정보를 찾을 수 없습니다.");
+
     return data.s.map((stop: any) => ({
-      station: stop.s.d || stop.s.i, // d 필드가 있으면 전체 이름 사용, 없으면 i 필드 사용
+      station: stop.s.d || stop.s.i, 
       arrTime: stop.a ? stop.a.substring(0, 5) : "--:--",
       depTime: stop.b ? stop.b.substring(0, 5) : "--:--",
       stopType: stop.stop
     })).filter((stop: any) => stop.stopType !== 'skip');
   } catch (error) {
-    console.error("RailBlue API error:", error);
+    console.error("[RailBlue] API error:", error, "URL:", url);
     throw error;
   }
 };

@@ -256,6 +256,7 @@ function App() {
       }
     } catch (error) {
       console.error(error);
+      alert("상세 경로 정보를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.");
     } finally {
       setLoadingStops(false);
     }
