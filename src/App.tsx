@@ -37,6 +37,28 @@ function App() {
 
   const hours = Array.from({ length: 28 }, (_, i) => i);
 
+  const updateDestinations = async (initialTrains: Train[], date: string) => {
+    const chunkSize = 3;
+    for (let i = 0; i < initialTrains.length; i += chunkSize) {
+      const chunk = initialTrains.slice(i, i + chunkSize);
+      await Promise.all(chunk.map(async (train) => {
+        try {
+          const stops = await apiClient.fetchTrainStops(train.trainNo, date);
+          if (stops && Array.isArray(stops) && stops.length > 0) {
+            const finalStop = stops[stops.length - 1];
+            const newDest = `${finalStop.station}행`;
+            setTrains(prevTrains => prevTrains.map(t => 
+              t.trainNo === train.trainNo ? { ...t, destination: newDest } : t
+            ));
+          }
+        } catch (e) {
+          console.error(`Background update failed for train #${train.trainNo}:`, e);
+        }
+      }));
+      await new Promise(res => setTimeout(res, 300));
+    }
+  };
+
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!depStation || !arrStation || !targetDate) {
@@ -52,6 +74,7 @@ function App() {
       } else {
         setTrains(response.trains);
         setView('timetable');
+        updateDestinations(response.trains, targetDate);
       }
     } catch (err: any) {
       alert(err.message);

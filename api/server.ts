@@ -61,6 +61,37 @@ app.get('/api/stations', (req, res) => {
   res.json(sorted);
 });
 
+// 차종 매핑 함수 (기존 로직 복구)
+function mapTrainType(id: string, name: string) {
+  if (id) {
+    switch (id) {
+      case "00": return "KTX";
+      case "01": return "새마을";
+      case "02": return "무궁화";
+      case "03": return "통근";
+      case "04": return "누리로";
+      case "06": return "AREX직통";
+      case "07": return "A산천";
+      case "08": return "I새마을";
+      case "09": return "I청춘";
+      case "10": return "B산천";
+      case "16": return "이음";
+      case "17": return "SRT";
+      case "18": return "마음";
+      case "19": return "청룡";
+    }
+  }
+  if (name.includes("KTX-산천(A-type)")) return "A산천";
+  if (name.includes("KTX-산천(B-type)")) return "B산천";
+  if (name.includes("KTX-산천")) return "산천";
+  if (name.includes("ITX-새마을")) return "I새마을";
+  if (name.includes("ITX-청춘")) return "I청춘";
+  if (name.includes("ITX-마음")) return "마음";
+  if (name.includes("KTX-이음")) return "이음";
+  if (name.includes("KTX-청룡")) return "청룡";
+  return name;
+}
+
 // 2. 열차 시간표 API
 app.get('/api/timetable', async (req, res) => {
   const { dep, arr, date } = req.query;
@@ -94,15 +125,18 @@ app.get('/api/timetable', async (req, res) => {
     const rawTrains = Array.isArray(items) ? items : items ? [items] : [];
 
     const trains: Train[] = rawTrains.map((item: any, index: number) => {
-      const trainType = TRAIN_TYPE_MAP[item.vehiclekndid] || item.traingradename;
+      const trainType = mapTrainType(item.vehiclekndid, item.traingradename);
       const depTimeStr = String(item.depplandtime);
       const arrTimeStr = String(item.arrplandtime);
+      
+      // 실제 종착역이 제공되면 사용, 없으면 검색 시의 도착역 사용
+      const finalDest = item.endplacename ? `${item.endplacename}행` : `${item.arrplacename}행`;
       
       return {
         id: `${item.trainno}-${index}`,
         type: trainType,
         trainNo: String(item.trainno),
-        destination: `${item.arrplacename}행`, // 초기값, 상세 조회 시 업데이트 가능
+        destination: finalDest,
         depTime: `${depTimeStr.substring(8, 10)}:${depTimeStr.substring(10, 12)}`,
         arrTime: `${arrTimeStr.substring(8, 10)}:${arrTimeStr.substring(10, 12)}`,
         originalType: item.traingradename
