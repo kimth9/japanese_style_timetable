@@ -4,6 +4,7 @@
   "description": "Custom CORS proxy for RailBlue API",
   "main": "index.js",
   "scripts": {
+    "prestart": "npm install",
     "start": "node index.js"
   },
   "engines": {

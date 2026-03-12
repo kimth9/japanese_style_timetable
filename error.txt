@@ -1,156 +1,78 @@
-2026-03-12T05:32:27.7173248Z    _____
-2026-03-12T05:32:27.7173717Z   /  _  \ __________ _________   ____
-2026-03-12T05:32:27.7173739Z  /  /_\  \\___   /  |  \_  __ \_/ __ \
-2026-03-12T05:32:27.7173753Z /    |    \/    /|  |  /|  | \/\  ___/
-2026-03-12T05:32:27.7173768Z \____|__  /_____ \____/ |__|    \___  >
-2026-03-12T05:32:27.7173783Z         \/      \/                  \/
-2026-03-12T05:32:27.7173796Z A P P   S E R V I C E   O N   L I N U X
-2026-03-12T05:32:27.7173809Z
-2026-03-12T05:32:27.7173825Z Documentation    : http://aka.ms/webapp-linux
-2026-03-12T05:32:27.717384Z NodeJS quickstart: https://aka.ms/node-qs
-2026-03-12T05:32:27.7173853Z NodeJS Version   : v24.13.0
-2026-03-12T05:32:27.7173893Z Instance Name    : lw0sdlwk000D5A
-2026-03-12T05:32:27.7173913Z Instance Id      : 2ebaea0b253f5165daf3ffe9d2db6809fcf8714ea592cf11b0c7e00709509b10
-2026-03-12T05:32:27.7173927Z
-2026-03-12T05:32:27.7173942Z Note: Any data outside '/home' is not persisted
-2026-03-12T05:32:32.1803893Z  * Starting OpenBSD Secure Shell server sshd
-2026-03-12T05:32:32.2321364Z    ...done.
-2026-03-12T05:32:32.2603387Z WEBSITES_INCLUDE_CLOUD_CERTS is not set to true.
-2026-03-12T05:32:32.3028352Z Updating certificates in /etc/ssl/certs...
-2026-03-12T05:32:50.0631395Z rehash: warning: skipping duplicate certificate in SSLcom-TLS-Root-2022-ECC.pem
-2026-03-12T05:32:50.0708328Z rehash: warning: skipping duplicate certificate in SSLcom-TLS-Root-2022-RSA.pem
-2026-03-12T05:32:50.4132598Z rehash: warning: skipping ca-certificates.crt,it does not contain exactly one certificate or CRL
-2026-03-12T05:32:50.5446523Z 4 added, 0 removed; done.
-2026-03-12T05:32:50.5446862Z Running hooks in /etc/ca-certificates/update.d...
-2026-03-12T05:32:50.582385Z done.
-2026-03-12T05:32:50.6038245Z CA certificates copied and updated successfully.
-2026-03-12T05:32:50.7861272Z  * Starting periodic command scheduler cron
-2026-03-12T05:32:50.8760104Z    ...done.
-2026-03-12T05:32:51.2673716Z Could not find build manifest file at '/home/site/wwwroot/oryx-manifest.toml'
-2026-03-12T05:32:51.2674223Z Could not find operation ID in manifest. Generating an operation id...
-2026-03-12T05:32:51.2674248Z Build Operation ID: 8953c016-8ffd-4497-aac6-0762c63bab3c
-2026-03-12T05:32:52.4703627Z Environment Variables for Application Insight's IPA Codeless Configuration exists..
-2026-03-12T05:32:52.5734099Z Writing output script to '/opt/startup/startup.sh'
-2026-03-12T05:32:52.7135266Z Running #!/bin/sh
-2026-03-12T05:32:52.713578Z
-2026-03-12T05:32:52.7135809Z # Enter the source directory to make sure the script runs where the user expects
-2026-03-12T05:32:52.7135824Z cd "/home/site/wwwroot"
-2026-03-12T05:32:52.7135836Z
-2026-03-12T05:32:52.7219237Z export NODE_PATH=/usr/local/lib/node_modules:$NODE_PATH
-2026-03-12T05:32:52.7219476Z if [ -z "$PORT" ]; then
-2026-03-12T05:32:52.7219497Z 		export PORT=8080
-2026-03-12T05:32:52.7219509Z fi
-2026-03-12T05:32:52.7219583Z
-2026-03-12T05:32:52.7240315Z npm start
-2026-03-12T05:32:54.0986095Z npm info using npm@10.9.2
-2026-03-12T05:32:54.0994575Z npm info using node@v24.13.0
-2026-03-12T05:32:58.6045844Z
-2026-03-12T05:32:58.6046335Z > railblue-proxy@1.0.0 start
-2026-03-12T05:32:58.6046356Z > node index.js
-2026-03-12T05:32:58.604637Z
-2026-03-12T05:32:59.1381074Z node:internal/modules/cjs/loader:1424
-2026-03-12T05:32:59.1381668Z   throw err;
-2026-03-12T05:32:59.1381689Z   ^
-2026-03-12T05:32:59.1381703Z
-2026-03-12T05:32:59.1381718Z Error: Cannot find module 'express'
-2026-03-12T05:32:59.1381732Z Require stack:
-2026-03-12T05:32:59.1381747Z - /home/site/wwwroot/index.js
-2026-03-12T05:32:59.1381763Z     at Module._resolveFilename (node:internal/modules/cjs/loader:1421:15)
-2026-03-12T05:32:59.1381778Z     at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
-2026-03-12T05:32:59.1381794Z     at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
-2026-03-12T05:32:59.138181Z     at Module._load (node:internal/modules/cjs/loader:1227:37)
-2026-03-12T05:32:59.1381826Z     at TracingChannel.traceSync (node:diagnostics_channel:328:14)
-2026-03-12T05:32:59.1381868Z     at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
-2026-03-12T05:32:59.1381884Z     at Module.require (node:internal/modules/cjs/loader:1504:12)
-2026-03-12T05:32:59.1381899Z     at require (node:internal/modules/helpers:152:16)
-2026-03-12T05:32:59.1381915Z     at Object.<anonymous> (/home/site/wwwroot/index.js:1:17)
-2026-03-12T05:32:59.138193Z     at Module._compile (node:internal/modules/cjs/loader:1761:14) {
-2026-03-12T05:32:59.1381944Z   code: 'MODULE_NOT_FOUND',
-2026-03-12T05:32:59.138196Z   requireStack: [ '/home/site/wwwroot/index.js' ]
-2026-03-12T05:32:59.1381974Z }
-2026-03-12T05:32:59.1448359Z
-2026-03-12T05:32:59.1448845Z Node.js v24.13.0
-2026-03-12T05:32:59.2144063Z npm http fetch GET 200 https://registry.npmjs.org/npm 1256ms
-2026-03-12T05:32:59.2428781Z npm notice
-2026-03-12T05:32:59.2429302Z npm notice New major version of npm available! 10.9.2 -> 11.11.1
-2026-03-12T05:32:59.2429327Z npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.11.1
-2026-03-12T05:32:59.2429344Z npm notice To update run: npm install -g npm@11.11.1
-2026-03-12T05:32:59.2429357Z npm notice
-2026-03-12T05:36:10.0374326Z    _____
-2026-03-12T05:36:10.0374769Z   /  _  \ __________ _________   ____
-2026-03-12T05:36:10.0374794Z  /  /_\  \\___   /  |  \_  __ \_/ __ \
-2026-03-12T05:36:10.0374813Z /    |    \/    /|  |  /|  | \/\  ___/
-2026-03-12T05:36:10.0374833Z \____|__  /_____ \____/ |__|    \___  >
-2026-03-12T05:36:10.0374847Z         \/      \/                  \/
-2026-03-12T05:36:10.0374861Z A P P   S E R V I C E   O N   L I N U X
-2026-03-12T05:36:10.0374873Z
-2026-03-12T05:36:10.0374889Z Documentation    : http://aka.ms/webapp-linux
-2026-03-12T05:36:10.0374981Z NodeJS quickstart: https://aka.ms/node-qs
-2026-03-12T05:36:10.0374997Z NodeJS Version   : v24.13.0
-2026-03-12T05:36:10.0375011Z Instance Name    : lw0sdlwk000D5A
-2026-03-12T05:36:10.0375029Z Instance Id      : 2ebaea0b253f5165daf3ffe9d2db6809fcf8714ea592cf11b0c7e00709509b10
-2026-03-12T05:36:10.0375042Z
-2026-03-12T05:36:10.0375057Z Note: Any data outside '/home' is not persisted
-2026-03-12T05:36:15.305833Z  * Starting OpenBSD Secure Shell server sshd
-2026-03-12T05:36:15.348466Z    ...done.
-2026-03-12T05:36:15.3680866Z WEBSITES_INCLUDE_CLOUD_CERTS is not set to true.
-2026-03-12T05:36:15.4192897Z Updating certificates in /etc/ssl/certs...
-2026-03-12T05:36:33.3373379Z rehash: warning: skipping duplicate certificate in SSLcom-TLS-Root-2022-ECC.pem
-2026-03-12T05:36:33.3454998Z rehash: warning: skipping duplicate certificate in SSLcom-TLS-Root-2022-RSA.pem
-2026-03-12T05:36:33.7515385Z rehash: warning: skipping ca-certificates.crt,it does not contain exactly one certificate or CRL
-2026-03-12T05:36:33.8098273Z 4 added, 0 removed; done.
-2026-03-12T05:36:33.8270056Z Running hooks in /etc/ca-certificates/update.d...
-2026-03-12T05:36:33.8366061Z done.
-2026-03-12T05:36:33.8570744Z CA certificates copied and updated successfully.
-2026-03-12T05:36:34.1360214Z  * Starting periodic command scheduler cron
-2026-03-12T05:36:34.1853252Z    ...done.
-2026-03-12T05:36:34.4663678Z Could not find build manifest file at '/home/site/wwwroot/oryx-manifest.toml'
-2026-03-12T05:36:34.4667768Z Could not find operation ID in manifest. Generating an operation id...
-2026-03-12T05:36:34.4667869Z Build Operation ID: c3c98011-ffcd-402a-811c-4a5cfed12625
-2026-03-12T05:36:35.341327Z Environment Variables for Application Insight's IPA Codeless Configuration exists..
-2026-03-12T05:36:35.4619002Z Writing output script to '/opt/startup/startup.sh'
-2026-03-12T05:36:35.6141785Z Running #!/bin/sh
-2026-03-12T05:36:35.6218929Z
-2026-03-12T05:36:35.6218994Z # Enter the source directory to make sure the script runs where the user expects
-2026-03-12T05:36:35.621901Z cd "/home/site/wwwroot"
-2026-03-12T05:36:35.6219022Z
-2026-03-12T05:36:35.6223583Z export NODE_PATH=/usr/local/lib/node_modules:$NODE_PATH
-2026-03-12T05:36:35.6223763Z if [ -z "$PORT" ]; then
-2026-03-12T05:36:35.6223813Z 		export PORT=8080
-2026-03-12T05:36:35.6223827Z fi
-2026-03-12T05:36:35.622384Z
-2026-03-12T05:36:35.6226268Z npm start
-2026-03-12T05:36:37.3470284Z npm info using npm@10.9.2
-2026-03-12T05:36:37.3479713Z npm info using node@v24.13.0
-2026-03-12T05:36:39.6262012Z
-2026-03-12T05:36:39.626256Z > railblue-proxy@1.0.0 start
-2026-03-12T05:36:39.6262584Z > node index.js
-2026-03-12T05:36:39.6262599Z
-2026-03-12T05:36:40.1910202Z node:internal/modules/cjs/loader:1424
-2026-03-12T05:36:40.1910671Z   throw err;
-2026-03-12T05:36:40.1910693Z   ^
-2026-03-12T05:36:40.1910709Z
-2026-03-12T05:36:40.1910803Z Error: Cannot find module 'express'
-2026-03-12T05:36:40.1910818Z Require stack:
-2026-03-12T05:36:40.1910834Z - /home/site/wwwroot/index.js
-2026-03-12T05:36:40.1910851Z     at Module._resolveFilename (node:internal/modules/cjs/loader:1421:15)
-2026-03-12T05:36:40.1910866Z     at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
-2026-03-12T05:36:40.1910883Z     at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
-2026-03-12T05:36:40.1910899Z     at Module._load (node:internal/modules/cjs/loader:1227:37)
-2026-03-12T05:36:40.1910915Z     at TracingChannel.traceSync (node:diagnostics_channel:328:14)
-2026-03-12T05:36:40.1910931Z     at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
-2026-03-12T05:36:40.1910947Z     at Module.require (node:internal/modules/cjs/loader:1504:12)
-2026-03-12T05:36:40.1910964Z     at require (node:internal/modules/helpers:152:16)
-2026-03-12T05:36:40.1911Z     at Object.<anonymous> (/home/site/wwwroot/index.js:1:17)
-2026-03-12T05:36:40.1911017Z     at Module._compile (node:internal/modules/cjs/loader:1761:14) {
-2026-03-12T05:36:40.1911032Z   code: 'MODULE_NOT_FOUND',
-2026-03-12T05:36:40.1911048Z   requireStack: [ '/home/site/wwwroot/index.js' ]
-2026-03-12T05:36:40.1911061Z }
-2026-03-12T05:36:40.1985877Z
-2026-03-12T05:36:40.1986328Z Node.js v24.13.0
-2026-03-12T05:36:40.3999904Z npm http fetch GET 200 https://registry.npmjs.org/npm 959ms
-2026-03-12T05:36:40.4122182Z npm notice
-2026-03-12T05:36:40.4122677Z npm notice New major version of npm available! 10.9.2 -> 11.11.1
-2026-03-12T05:36:40.4122769Z npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.11.1
-2026-03-12T05:36:40.4122786Z npm notice To update run: npm install -g npm@11.11.1
-2026-03-12T05:36:40.41228Z npm notice
+2026-03-12T06:56:33.7723944Z    _____
+2026-03-12T06:56:33.8335657Z   /  _  \ __________ _________   ____
+2026-03-12T06:56:33.8335936Z  /  /_\  \\___   /  |  \_  __ \_/ __ \
+2026-03-12T06:56:33.8335964Z /    |    \/    /|  |  /|  | \/\  ___/
+2026-03-12T06:56:33.8335987Z \____|__  /_____ \____/ |__|    \___  >
+2026-03-12T06:56:33.8336007Z         \/      \/                  \/
+2026-03-12T06:56:33.8336059Z A P P   S E R V I C E   O N   L I N U X
+2026-03-12T06:56:33.8336127Z
+2026-03-12T06:56:33.8336156Z Documentation    : http://aka.ms/webapp-linux
+2026-03-12T06:56:33.8336178Z NodeJS quickstart: https://aka.ms/node-qs
+2026-03-12T06:56:33.8336204Z NodeJS Version   : v24.13.0
+2026-03-12T06:56:33.8336225Z Instance Name    : lw0sdlwk000D5A
+2026-03-12T06:56:33.8336259Z Instance Id      : 2ebaea0b253f5165daf3ffe9d2db6809fcf8714ea592cf11b0c7e00709509b10
+2026-03-12T06:56:33.8336296Z
+2026-03-12T06:56:33.8336319Z Note: Any data outside '/home' is not persisted
+2026-03-12T06:56:37.0577944Z  * Starting OpenBSD Secure Shell server sshd
+2026-03-12T06:56:37.1262804Z    ...done.
+2026-03-12T06:56:37.1555931Z WEBSITES_INCLUDE_CLOUD_CERTS is not set to true.
+2026-03-12T06:56:37.2570743Z Updating certificates in /etc/ssl/certs...
+2026-03-12T06:56:55.3008518Z rehash: warning: skipping duplicate certificate in SSLcom-TLS-Root-2022-ECC.pem
+2026-03-12T06:56:55.3009249Z rehash: warning: skipping duplicate certificate in SSLcom-TLS-Root-2022-RSA.pem
+2026-03-12T06:56:55.8850626Z rehash: warning: skipping ca-certificates.crt,it does not contain exactly one certificate or CRL
+2026-03-12T06:56:55.9424156Z 4 added, 0 removed; done.
+2026-03-12T06:56:55.9427464Z Running hooks in /etc/ca-certificates/update.d...
+2026-03-12T06:56:55.9444686Z done.
+2026-03-12T06:56:55.9732006Z CA certificates copied and updated successfully.
+2026-03-12T06:56:56.1665027Z  * Starting periodic command scheduler cron
+2026-03-12T06:56:56.2042444Z    ...done.
+2026-03-12T06:56:56.4961892Z Could not find build manifest file at '/home/site/wwwroot/oryx-manifest.toml'
+2026-03-12T06:56:56.5055962Z Could not find operation ID in manifest. Generating an operation id...
+2026-03-12T06:56:56.5065417Z Build Operation ID: ec121464-97e9-41a5-9e72-bde52a900008
+2026-03-12T06:56:57.684267Z Environment Variables for Application Insight's IPA Codeless Configuration exists..
+2026-03-12T06:56:57.7945234Z Writing output script to '/opt/startup/startup.sh'
+2026-03-12T06:56:57.956091Z Running #!/bin/sh
+2026-03-12T06:56:57.9561809Z
+2026-03-12T06:56:57.9561848Z # Enter the source directory to make sure the script runs where the user expects
+2026-03-12T06:56:57.9561882Z cd "/home/site/wwwroot"
+2026-03-12T06:56:57.9561901Z
+2026-03-12T06:56:57.9566311Z export NODE_PATH=/usr/local/lib/node_modules:$NODE_PATH
+2026-03-12T06:56:57.9566412Z if [ -z "$PORT" ]; then
+2026-03-12T06:56:57.9566437Z 		export PORT=8080
+2026-03-12T06:56:57.9566481Z fi
+2026-03-12T06:56:57.9566502Z
+2026-03-12T06:56:57.9571163Z npm start
+2026-03-12T06:56:59.8370009Z npm info using npm@10.9.2
+2026-03-12T06:56:59.8451433Z npm info using node@v24.13.0
+2026-03-12T06:57:05.8191654Z
+2026-03-12T06:57:05.8192304Z > railblue-proxy@1.0.0 start
+2026-03-12T06:57:05.8192338Z > node index.js
+2026-03-12T06:57:05.8192359Z
+2026-03-12T06:57:06.4435652Z node:internal/modules/cjs/loader:1424
+2026-03-12T06:57:06.4436438Z   throw err;
+2026-03-12T06:57:06.4436478Z   ^
+2026-03-12T06:57:06.4436499Z
+2026-03-12T06:57:06.4436522Z Error: Cannot find module 'express'
+2026-03-12T06:57:06.4436543Z Require stack:
+2026-03-12T06:57:06.4436564Z - /home/site/wwwroot/index.js
+2026-03-12T06:57:06.4436587Z     at Module._resolveFilename (node:internal/modules/cjs/loader:1421:15)
+2026-03-12T06:57:06.4436632Z     at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+2026-03-12T06:57:06.4436657Z     at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+2026-03-12T06:57:06.443668Z     at Module._load (node:internal/modules/cjs/loader:1227:37)
+2026-03-12T06:57:06.4436702Z     at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+2026-03-12T06:57:06.4508372Z     at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+2026-03-12T06:57:06.4508421Z     at Module.require (node:internal/modules/cjs/loader:1504:12)
+2026-03-12T06:57:06.45085Z     at require (node:internal/modules/helpers:152:16)
+2026-03-12T06:57:06.4508525Z     at Object.<anonymous> (/home/site/wwwroot/index.js:1:17)
+2026-03-12T06:57:06.4508547Z     at Module._compile (node:internal/modules/cjs/loader:1761:14) {
+2026-03-12T06:57:06.4508588Z   code: 'MODULE_NOT_FOUND',
+2026-03-12T06:57:06.4508612Z   requireStack: [ '/home/site/wwwroot/index.js' ]
+2026-03-12T06:57:06.4508631Z }
+2026-03-12T06:57:06.4538819Z
+2026-03-12T06:57:06.4539237Z Node.js v24.13.0
+2026-03-12T06:57:06.5743635Z npm http fetch GET 200 https://registry.npmjs.org/npm 1542ms
+2026-03-12T06:57:06.6027858Z npm notice
+2026-03-12T06:57:06.6028421Z npm notice New major version of npm available! 10.9.2 -> 11.11.1
+2026-03-12T06:57:06.6028473Z npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.11.1
+2026-03-12T06:57:06.6028496Z npm notice To update run: npm install -g npm@11.11.1
+2026-03-12T06:57:06.6028557Z npm notice
