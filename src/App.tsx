@@ -31,11 +31,13 @@ function App() {
   const getAdjustedHour = (timeStr: string) => {
     if (!timeStr || !timeStr.includes(':')) return 0;
     let hour = parseInt(timeStr.split(':')[0]);
+    // 0시 ~ 3시는 24시 ~ 27시로 변환하여 하단에 배치
     if (hour >= 0 && hour <= 3) return hour + 24;
     return hour;
   };
 
-  const hours = Array.from({ length: 28 }, (_, i) => i);
+  // 4시부터 27시(다음날 새벽 3시)까지 생성
+  const hours = Array.from({ length: 24 }, (_, i) => i + 4);
 
   const updateDestinations = async (initialTrains: Train[], date: string) => {
     const chunkSize = 3;
