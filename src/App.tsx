@@ -203,37 +203,35 @@ function App() {
         return;
       }
 
-      const initialTrains: Train[] = data.map((item: TagoTrainInfo, index: number) => {
-        const typeStr = mapTrainType(item.vehiclekndid, item.traingradename);
-        return {
-          id: `${item.trainno}-${index}`,
-          type: typeStr,
-          trainNo: String(item.trainno),
-          destination: `${item.arrplacename}행`,
-          depTime: formatTime(String(item.depplandtime)),
-          arrTime: formatTime(String(item.arrplandtime)),
-          originalType: item.traingradename
-        };
-      });
-
-      setTrains(initialTrains);
-      setView('timetable'); // 데이터 로드 완료 후 결과 페이지로 전환
-
-      // 종착역 정보 실시간 보정
-      const updatedTrains = await Promise.all(initialTrains.map(async (train) => {
-        try {
-          const stops = await fetchTrainStopsFromRailBlue(train.trainNo, targetDate);
-          if (stops && stops.length > 0) {
-            const lastStop = stops[stops.length - 1];
-            return { ...train, destination: `${lastStop.station}행` };
-          }
-        } catch (e) {
-          console.error(`종착역 조회 실패 (#${train.trainNo}):`, e);
-        }
-        return train;
+      // 1. TAGO 데이터를 기반으로 기본 열차 목록 생성
+      const baseTrains = data.map((item: TagoTrainInfo, index: number) => ({
+        id: `${item.trainno}-${index}`,
+        type: mapTrainType(item.vehiclekndid, item.traingradename),
+        trainNo: String(item.trainno),
+        destination: `${item.arrplacename}행`, // 임시 행선지
+        depTime: formatTime(String(item.depplandtime)),
+        arrTime: formatTime(String(item.arrplandtime)),
+        originalType: item.traingradename
       }));
 
+      // 2. 모든 열차에 대해 RailBlue에서 실제 종착역 정보를 병렬로 가져옴
+      const updatedTrains = await Promise.all(
+        baseTrains.map(async (train) => {
+          try {
+            const stops = await fetchTrainStopsFromRailBlue(train.trainNo, targetDate);
+            if (stops && stops.length > 0) {
+              const lastStop = stops[stops.length - 1];
+              return { ...train, destination: `${lastStop.station}행` };
+            }
+          } catch (e) {
+            console.error(`종착역 정보 조회 실패 (#${train.trainNo}):`, e);
+          }
+          return train; // 실패 시 TAGO 정보 유지
+        })
+      );
+
       setTrains(updatedTrains);
+      setView('timetable'); 
     } catch (error) {
       alert(error instanceof Error ? error.message : '데이터를 가져오는데 실패했습니다.');
     } finally {
