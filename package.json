@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "postinstall": "cd railblue-proxy && npm install",
+    "start": "cd railblue-proxy && node index.js"
   },
   "engines": {
     "node": ">=22.0.0"
