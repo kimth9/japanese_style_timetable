@@ -22,8 +22,8 @@ body {
 }
 
 .container {
-  max-width: 1400px;
-  width: 95%;
+  max-width: 1600px;
+  width: 98%; /* 95%에서 98%로 확장 */
   background: white;
   min-height: 100vh;
   box-shadow: 0 0 20px rgba(0,0,0,0.05);
@@ -32,7 +32,7 @@ body {
   margin: 0 auto;
 }
 
-/* Search Page Styles */
+/* --- Search Page Styles (Desktop Default) --- */
 .search-view {
   background-color: #f0f2f5;
   background-image: 
@@ -46,7 +46,7 @@ body {
 .search-page {
   width: 100%;
   max-width: 1200px;
-  padding: 60px 20px;
+  padding: 80px 20px; /* 상하 여백을 늘려 더 여유있게 조정 */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -81,19 +81,15 @@ body {
 
 .search-box-large {
   width: 100%;
-  max-width: 600px;
+  max-width: 850px; /* 800px에서 850px로 확장 */
   background: white;
-  padding: 45px;
+  padding: 50px 70px; /* 좌우 패딩을 늘려 더 넓은 느낌 제공 */
   border-radius: 30px;
   box-shadow: 0 30px 60px rgba(0,0,0,0.08);
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 35px;
   border: 1px solid rgba(0,0,0,0.04);
-}
-
-.search-box-large .input-group {
-  width: 100%;
 }
 
 .search-box-large .input-group label {
@@ -135,30 +131,15 @@ body {
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.search-btn-large:hover {
-  background-color: #000;
-}
+.search-btn-large:hover { background-color: #000; }
+.search-btn-large:active { transform: scale(0.98); }
+.search-btn-large:disabled { background-color: #ccc; cursor: not-allowed; }
 
-.search-btn-large:active {
-  transform: scale(0.98);
-}
-
-.search-btn-large:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-/* StationInput Suggestions List Style */
-.station-input-wrapper {
-  position: relative;
-  width: 100%;
-}
-
+/* --- Suggestions & Timetable (Desktop Default) --- */
+.station-input-wrapper { position: relative; width: 100%; }
 .suggestions-list {
   position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
+  top: 100%; left: 0; right: 0;
   background: white;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -169,7 +150,6 @@ body {
   overflow-y: auto;
   padding: 0;
 }
-
 .suggestions-list li {
   padding: 12px 16px;
   font-size: 1rem;
@@ -180,17 +160,8 @@ body {
   color: var(--text-main);
   text-align: left;
 }
+.suggestions-list li:hover { background-color: #f1f3f5; font-weight: 700; }
 
-.suggestions-list li:last-child {
-  border-bottom: none;
-}
-
-.suggestions-list li:hover {
-  background-color: #f1f3f5;
-  font-weight: 700;
-}
-
-/* Timetable View Layout */
 .timetable-view {
   background-color: #f0f2f5;
   background-image: 
@@ -205,6 +176,9 @@ body {
   z-index: 1000;
   background: white;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .header-top-bar {
@@ -229,18 +203,7 @@ body {
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-.back-btn:hover {
-  background: white;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-}
-
-.header-title {
-  font-size: 1rem;
-  font-weight: 800;
-  margin: 0;
-  letter-spacing: 1px;
-}
+.header-title { font-size: 1rem; font-weight: 800; margin: 0; letter-spacing: 1px; }
 
 .timetable-header {
   display: grid;
@@ -248,48 +211,19 @@ body {
   background: white;
   border-bottom: 2px solid #eee;
   text-align: center;
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
 }
 
-.header-col {
-  padding: 15px 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 4px;
-}
-
-.header-col.center {
-  background-color: #f8f9fa;
-  border-left: 1px solid var(--border-sub);
-  border-right: 1px solid var(--border-sub);
-}
-
-.station-label { 
-  font-size: 1.3rem; 
-  font-weight: 900; 
-  color: var(--text-main);
-  letter-spacing: -0.5px;
-}
-
-.time-label { 
-  font-size: 0.75rem; 
-  color: var(--text-muted); 
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
+.header-col { padding: 15px 10px; display: flex; flex-direction: column; justify-content: center; gap: 4px; }
+.header-col.center { background-color: #f8f9fa; border-left: 1px solid var(--border-sub); border-right: 1px solid var(--border-sub); }
+.station-label { font-size: 1.3rem; font-weight: 900; color: var(--text-main); letter-spacing: -0.5px; }
+.time-label { font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; }
 .year-label { font-size: 0.8rem; font-weight: 700; color: #888; }
 .date-label { font-size: 1.1rem; font-weight: 800; color: var(--border-main); }
 
-/* Timetable Grid */
 .timetable {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 0;
   max-width: 1000px;
   width: 100%;
   margin: 0 auto;
@@ -303,17 +237,6 @@ body {
   border-bottom: 1px solid #f0f0f0;
 }
 
-.hour-row:first-child {
-  border-radius: 12px 12px 0 0;
-  border-top: 1px solid #f0f0f0;
-}
-
-.hour-row:last-child {
-  border-radius: 0 0 12px 12px;
-  margin-bottom: 40px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-}
-
 .hour-cell {
   display: flex;
   align-items: center;
@@ -325,16 +248,9 @@ body {
   border-left: 1px solid #f5f5f5;
   border-right: 1px solid #f5f5f5;
   position: relative;
-  line-height: 1;
 }
 
-.hour-cell::after {
-  content: "시";
-  margin-left: 0;
-  font-size: 0.9em;
-  display: inline-block;
-  transform: translateY(-0.05em);
-}
+.hour-cell::after { content: "시"; font-size: 0.9em; margin-left: 2px; }
 
 .departure-cell, .arrival-cell {
   padding: 12px;
@@ -344,9 +260,6 @@ body {
   align-items: flex-start;
 }
 
-.departure-cell { justify-content: flex-end; }
-.arrival-cell { justify-content: flex-start; }
-
 .train-box {
   padding: 8px 6px;
   border-radius: 8px;
@@ -354,89 +267,79 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80px;
+  width: 85px;
   min-height: 70px;
   justify-content: center;
   cursor: pointer;
   border: 1px solid #eee;
-  transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+  transition: transform 0.15s, box-shadow 0.15s;
 }
 
-.train-box:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 12px rgba(0,0,0,0.08);
-  z-index: 10;
-}
-
-.minute {
-  font-size: 1.4rem;
-  font-weight: 900;
-  line-height: 1;
-  margin-bottom: 4px;
-  color: #000;
-}
-
+.minute { font-size: 1.4rem; font-weight: 900; line-height: 1; margin-bottom: 4px; color: #000; }
 .train-info, .train-dest {
   font-size: 0.65rem;
   text-align: center;
   word-break: keep-all;
-  line-height: 1.2;
   color: #777;
   font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 1px;
 }
 
-/* Specific Train Borders & Colors */
+/* --- Train Types (Restored original layered designs) --- */
 .ktx {
-  border: 2px solid #000; 
+  border: 2.5px solid #000; 
   background: linear-gradient(180deg, #E0E0E0 0%, #E0E0E0 50%, #F0F4F8 50%, #F0F4F8 70%, #BCCCDC 70%  );
 }
 
 .sancheon { 
-  border: 2px solid #003DA5;
+  border: 2.5px solid #003DA5;
   background: linear-gradient(180deg, #cfedfa 0%, #cfedfa 50%, #F2F2F2 50%, #F2F2F2 70%, #cfedfa 70%  );
 }
 
 .srt {
-  border: 2px solid #4B2F48;
+  border: 2.5px solid #4B2F48;
   background: linear-gradient(180deg, #D9C5CC 0%, #D9C5CC 50%, #F2F2F2 50%, #F2F2F2 70%, #D9C5CC 70%  );
 }
 
 .cheongryong { 
-  border: 2px solid #00234e; 
+  border: 2.5px solid #00234e; 
   background: linear-gradient(180deg, #BCCDE5 0%, #BCCDE5 50%, #E5D9BC 50%, #E5D9BC 70%, #BCCDE5 70%);
 }
 
 .eum { 
-  border: 2px solid #00234e;
+  border: 2.5px solid #00234e;
   background: linear-gradient(180deg, #BCCDE5 0%, #BCCDE5 33%, #E5D9BC 33%, #E5D9BC 50%, #BCCDE5 50%);
 }
 
 .itx-cheongchun { 
-  border: 2px solid #000; 
+  border: 2px solid #008D97; 
   background: linear-gradient(180deg, #E0F2F1 0%, #E0F2F1 50%, #CFD8DC 50%, #CFD8DC 70%, #E0F2F1 70%);
 }
 
 .itx-saemaul { 
-  border: 2px solid #000; 
+  border: 2px solid #E30613; 
   background: linear-gradient(180deg, #FFEBEE 0%, #FFEBEE 60%, #F5F5F5 60%, #F5F5F5 70%, #EEEEEE 70%);
 }
 
 .itx-maum { 
-  border: 2px solid #000;
+  border: 2px solid #E30613;
   background: linear-gradient(180deg, #FFDDE2 0%, #FFDDE2 50%, #E3F2FD 50%, #E3F2FD 70%, #F3F4F6 70%);
 }
 
 .mugunghwa { 
-  border: 1.5px solid #ff9a8b; 
+  border: 2px solid #ff9a8b; 
   background: #fff5f3; 
 }
 
 .nuriro { 
-  border: 1.5px solid #3D99C2;
+  border: 2px solid #3D99C2;
   background: #f0faff;
 }
 
-/* Popup Styles */
+/* --- Modals & Overlays --- */
 .modal-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -459,108 +362,15 @@ body {
   flex-direction: column;
 }
 
-.modal-header {
-  background: #f1f3f5;
-  padding: 20px;
-  text-align: center;
-  border-bottom: 1px solid #dee2e6;
-}
-
-.modal-header .train-title { 
-  font-size: 1.1rem; 
-  font-weight: 800; 
-  margin-bottom: 8px; 
-  word-break: keep-all;
-  line-height: 1.4;
-}
-
-.modal-header .route-summary { 
-  font-size: 1rem; 
-  font-weight: 700; 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  gap: 5px; 
-  flex-wrap: wrap;
-}
-
+.modal-header { background: #f1f3f5; padding: 20px; text-align: center; border-bottom: 1px solid #dee2e6; }
 .modal-body { padding: 20px; overflow-y: auto; flex: 1; }
-.timeline-list { display: flex; flex-direction: column; }
-.station-row { 
-  display: flex; 
-  justify-content: space-between; 
-  align-items: center; 
-  padding: 12px 0; 
-  border-bottom: 1px solid #f1f3f5;
-}
-.station-name { 
-  font-weight: 800; 
-  font-size: 1.05rem; 
-  flex: 1; 
-  min-width: 0;
-  word-break: break-all;
-  white-space: normal;
-  padding-right: 10px;
-  line-height: 1.3;
-}
+.station-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f1f3f5; }
+.station-name { font-weight: 800; font-size: 1.05rem; }
 
-.station-times {
-  display: flex;
-  gap: 10px;
-  font-size: 0.75rem;
-  font-weight: 400;
-  color: #666;
-  flex-shrink: 0;
-}
+.modal-footer { display: flex; border-top: 1px solid var(--border-sub); }
+.modal-footer .close-btn, .modal-footer .railblue-btn { flex: 1; padding: 15px; text-align: center; font-weight: 700; cursor: pointer; }
+.modal-footer .close-btn { background: var(--border-main); color: white; }
 
-.time-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 60px;
-  min-height: 35px;
-  justify-content: center;
-}
-
-.time-box .time-label-small {
-  font-size: 0.6rem;
-  color: #999;
-  margin-bottom: 2px;
-}
-
-.time-box .time-value {
-  font-size: 0.85rem;
-  color: #333;
-  font-weight: 500;
-}
-
-.modal-footer {
-  display: flex;
-  border-top: 1px solid var(--border-sub);
-}
-
-.modal-footer .close-btn, .modal-footer .railblue-btn {
-  flex: 1;
-  padding: 15px;
-  text-align: center;
-  font-weight: 700;
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-
-.modal-footer .railblue-btn {
-  background: #f8f9fa;
-  color: #0054A6;
-  border-right: 1px solid var(--border-sub);
-}
-
-.modal-footer .close-btn {
-  background: var(--border-main);
-  color: white;
-}
-
-/* Loading Overlay */
 .loading-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -572,75 +382,73 @@ body {
   z-index: 3000;
   backdrop-filter: blur(2px);
 }
+.spinner { width: 50px; height: 50px; border: 5px solid #f3f3f3; border-top: 5px solid var(--border-main); border-radius: 50%; animation: spin 1s linear infinite; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-.spinner {
-  width: 50px;
-  height: 50px;
-  border: 5px solid #f3f3f3;
-  border-top: 5px solid var(--border-main);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-bottom: 15px;
-}
+.short-date { display: none; }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.loading-text {
-  font-weight: 700;
-  color: var(--text-main);
-  font-size: 1rem;
-}
-
-.short-date {
-  display: none;
-}
-
-/* Mobile Responsive Styles */
+/* ============================================= */
+/* --- MOBILE RESPONSIVE STYLES (Max 480px) ---  */
+/* ============================================= */
 @media (max-width: 480px) {
+  body { padding: 0; }
+  .container { width: 100%; box-shadow: none; }
+
+  .search-page {
+    padding: 30px 15px;
+    gap: 25px;
+    justify-content: flex-start;
+    min-height: calc(100vh - 20px);
+  }
+
+  .main-title {
+    font-size: 1.5rem;
+    padding: 12px 30px;
+    letter-spacing: 1px;
+    width: 90%;
+  }
+
+  .search-box-large {
+    padding: 30px 20px;
+    border-radius: 20px;
+    gap: 20px;
+    width: 98%; /* 95%에서 98%로 확장 */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+  }
+
+  .search-box-large .input-group input {
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  .search-btn-large {
+    padding: 14px;
+    font-size: 1rem;
+    margin-top: 5px;
+  }
+
   .hour-row, .timetable-header {
     grid-template-columns: 4.5fr 1.5fr 4.5fr;
   }
 
   .departure-cell, .arrival-cell {
-    padding: 8px 2px;
-    gap: 4px;
+    padding: 8px 4px;
+    gap: 6px;
   }
 
   .train-box {
-    width: calc(50% - 2px); 
+    width: 48%;
     min-width: 0;
-    min-height: 75px;
-    padding: 6px 2px;
+    min-height: 65px;
+    padding: 4px 2px;
   }
 
-  .minute {
-    font-size: 1.25rem;
-  }
-
-  .train-info, .train-dest {
-    font-size: 0.7rem;
-    letter-spacing: -0.2px;
-    line-height: 1.1;
-  }
-
-  .hour-cell {
-    font-size: 1.2rem;
-  }
-
-  .station-label {
-    font-size: 0.95rem;
-  }
-
-  .year-label, .full-date {
-    display: none;
-  }
-
-  .short-date {
-    display: inline !important;
-    font-size: 0.9rem;
-    font-weight: 700;
-  }
+  .minute { font-size: 1.15rem; }
+  .train-info, .train-dest { font-size: 0.65rem; }
+  .hour-cell { font-size: 1.1rem; }
+  .station-label { font-size: 0.9rem; }
+  .year-label, .full-date { display: none; }
+  .short-date { display: inline !important; font-size: 0.85rem; font-weight: 700; }
+  
+  .modal-content { max-width: 100%; border-radius: 16px 16px 0 0; position: fixed; bottom: 0; }
 }

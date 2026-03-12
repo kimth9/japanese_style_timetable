@@ -84,6 +84,8 @@ function mapTrainType(id: string, name: string) {
   if (name.includes("KTX-산천(A-type)")) return "A산천";
   if (name.includes("KTX-산천(B-type)")) return "B산천";
   if (name.includes("KTX-산천")) return "산천";
+  if (name.includes("새마을호")) return "새마을"; // '새마을호'를 '새마을'로 변경
+  if (name.includes("무궁화호")) return "무궁화"; // '무궁화호'를 '무궁화'로 변경
   if (name.includes("ITX-새마을")) return "I새마을";
   if (name.includes("ITX-청춘")) return "I청춘";
   if (name.includes("ITX-마음")) return "마음";
@@ -124,7 +126,7 @@ app.get('/api/timetable', async (req, res) => {
     const items = data.response.body.items.item;
     const rawItems = Array.isArray(items) ? items : items ? [items] : [];
     
-    // 열차 번호(trainno) 기준 중복 제거 (공공데이터 API 특이사항 대응)
+    // 열차 번호(trainno)와 출발 예정 시간(depplandtime) 기준 중복 제거 강화
     const uniqueItems = rawItems.filter((item: any, index: number, self: any[]) =>
       index === self.findIndex((t) => t.trainno === item.trainno && t.depplandtime === item.depplandtime)
     );
@@ -190,7 +192,8 @@ app.get('/api/stops', async (req, res) => {
 
 // 정적 파일 제공 (빌드된 프론트엔드)
 const distPath = path.join(__dirname, '../dist');
-app.use(express.static(distPath));
+app.use(express.static(distPath)); // dist 폴더 전체를 정적 파일 서비스 루트로 지정
+app.use('/assets', express.static(path.join(distPath, 'assets'))); // asset 폴더도 명시적으로 지정
 
 app.get('*', (req, res) => {
   if (!req.path.startsWith('/api')) {

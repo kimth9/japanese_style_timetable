@@ -10,7 +10,10 @@ function App() {
   const [view, setView] = useState<'search' | 'timetable'>('search');
   const [depStation, setDepStation] = useState('');
   const [arrStation, setArrStation] = useState('');
+  // 날짜 입력 필드의 실제 값 (YYYYMMDD)
   const [targetDate, setTargetDate] = useState('');
+  // UI에 보여줄 날짜 값 (YYYY/MM/DD(요일))
+  const [displayDate, setDisplayDate] = useState('');
   const [trains, setTrains] = useState<Train[]>([]);
   const [loading, setLoading] = useState(false);
   
@@ -26,6 +29,30 @@ function App() {
     const date = new Date(year, month, day);
     const days = ['일', '월', '화', '수', '목', '금', '토'];
     return days[date.getDay()];
+  };
+
+  const formatDisplayDate = (ymd: string) => {
+    if (!ymd || ymd.length < 8) return ymd;
+    const year = ymd.substring(0, 4);
+    const month = ymd.substring(4, 6);
+    const day = ymd.substring(6, 8);
+    const formatted = `${year}/${month}/${day}`;
+    if (ymd.length === 8) {
+      const dayOfWeek = getDayOfWeek(ymd);
+      return `${formatted}(${dayOfWeek})`;
+    }
+    return formatted;
+  };
+
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const input = e.target.value.replace(/[^0-9]/g, ''); // 숫자만 남김
+    if (input.length > 8) return;
+
+    // 실제 처리할 YYYYMMDD 형식
+    setTargetDate(input); // 내부적으로는 YYYYMMDD 저장
+
+    // UI에 보여줄 값은 포매팅된 YYYY/MM/DD(요일)
+    setDisplayDate(formatDisplayDate(input));
   };
 
   const getAdjustedHour = (timeStr: string) => {
@@ -57,7 +84,7 @@ function App() {
           console.error(`Background update failed for train #${train.trainNo}:`, e);
         }
       }));
-      await new Promise(res => setTimeout(res, 300));
+      await new Promise(res => setTimeout(res, 500)); // rail.blue 요청 간격 500ms
     }
   };
 
@@ -120,7 +147,13 @@ function App() {
             <StationInput label="도착역" value={arrStation} onChange={setArrStation} placeholder="동대구, 부산..." />
             <div className="input-group">
               <label>조회 날짜</label>
-              <input type="text" value={targetDate} onChange={e => setTargetDate(e.target.value)} placeholder="YYYYMMDD" />
+              <input 
+                type="text" 
+                value={displayDate} 
+                onChange={handleDateChange} 
+                placeholder="YYYYMMDD" 
+                maxLength={10} // YYYY/MM/DD + (요일) 까지 고려
+              />
             </div>
             <button type="submit" className="search-btn-large" disabled={loading}>
               {loading ? '열차 정보 조회 중...' : '시간표 조회하기'}
@@ -143,8 +176,8 @@ function App() {
               <div className="header-col center">
                 <div className="year-label">{targetDate.substring(0, 4)}년</div>
                 <div className="date-label">
-                  <span className="full-date">{targetDate.substring(4, 6)}월 {targetDate.substring(6, 8)}일 ({getDayOfWeek(targetDate)})</span>
-                  <span className="short-date">{targetDate.substring(4, 6)}/{targetDate.substring(6, 8)} ({getDayOfWeek(targetDate)})</span>
+                  <span className="full-date">{displayDate}</span>
+                  <span className="short-date">{displayDate}</span>
                 </div>
               </div>
               <div className="header-col">
