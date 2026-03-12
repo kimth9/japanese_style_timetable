@@ -122,9 +122,14 @@ app.get('/api/timetable', async (req, res) => {
     }
 
     const items = data.response.body.items.item;
-    const rawTrains = Array.isArray(items) ? items : items ? [items] : [];
+    const rawItems = Array.isArray(items) ? items : items ? [items] : [];
+    
+    // 열차 번호(trainno) 기준 중복 제거 (공공데이터 API 특이사항 대응)
+    const uniqueItems = rawItems.filter((item: any, index: number, self: any[]) =>
+      index === self.findIndex((t) => t.trainno === item.trainno && t.depplandtime === item.depplandtime)
+    );
 
-    const trains: Train[] = rawTrains.map((item: any, index: number) => {
+    const trains: Train[] = uniqueItems.map((item: any, index: number) => {
       const trainType = mapTrainType(item.vehiclekndid, item.traingradename);
       const depTimeStr = String(item.depplandtime);
       const arrTimeStr = String(item.arrplandtime);
