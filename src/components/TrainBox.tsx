@@ -29,13 +29,7 @@ const formatTrainNo = (trainNo: string) => {
   return s.length <= 3 ? s.padStart(3, '0') : s.padStart(4, '0');
 };
 
-const formatDestination = (dest: string) => {
-  const pureDest = dest.replace('행', '');
-  if (pureDest.length >= 4) {
-    return pureDest.substring(0, 3) + '..';
-  }
-  return dest;
-};
+const formatDestination = (dest: string) => dest;
 
 const TrainBox = ({ train, onClick, type }: TrainBoxProps) => {
   const time = type === 'dep' ? train.depTime : train.arrTime;
