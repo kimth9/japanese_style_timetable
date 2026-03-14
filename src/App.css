@@ -370,6 +370,11 @@ body {
 .modal-footer { display: flex; border-top: 1px solid var(--border-sub); }
 .modal-footer .close-btn, .modal-footer .railblue-btn { flex: 1; padding: 15px; text-align: center; font-weight: 700; cursor: pointer; }
 .modal-footer .close-btn { background: var(--border-main); color: white; }
+.modal-footer .railblue-btn {
+  text-decoration: none;
+  background-color: #e9ecef;
+  color: blue;
+}
 
 .loading-overlay {
   position: fixed;
@@ -450,5 +455,21 @@ body {
   .year-label, .full-date { display: none; }
   .short-date { display: inline !important; font-size: 0.85rem; font-weight: 700; }
   
-  .modal-content { max-width: 100%; border-radius: 16px 16px 0 0; position: fixed; bottom: 0; }
+}
+
+/* Styles for single-line train times in modal */
+.station-times {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+  min-width: 130px;
+  text-align: right;
+}
+
+.arr-time, .dep-time {
+  width: 50px;
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 600;
 }
