@@ -126,10 +126,30 @@ app.get('/api/timetable', async (req, res) => {
     const items = data.response.body.items.item;
     const rawItems = Array.isArray(items) ? items : items ? [items] : [];
     
-    // 열차 번호(trainno)와 출발 예정 시간(depplandtime) 기준 중복 제거 강화
-    const uniqueItems = rawItems.filter((item: any, index: number, self: any[]) =>
-      index === self.findIndex((t) => t.trainno === item.trainno && t.depplandtime === item.depplandtime)
-    );
+    // 열차 번호(trainno)와 출발 시각(HHmm) 기준 중복 제거 강화
+    // 0시 이후 중복 표시 문제를 해결하기 위해 날짜와 시:분까지만 엄격하게 체크
+    const uniqueMap = new Map();
+    rawItems.forEach((item: any) => {
+      const trainNo = String(item.trainno).trim();
+      const depTimeStr = String(item.depplandtime);
+      const datePart = depTimeStr.substring(0, 8);
+      const timePart = depTimeStr.substring(8, 12); // HHmm
+      
+      // 요청한 날짜(date)와 실제 데이터의 날짜가 일치하는 것만 우선적으로 처리하거나,
+      // 동일 열차번호+동일시각은 하나만 남김
+      const key = `${trainNo}-${timePart}`;
+      
+      if (!uniqueMap.has(key)) {
+        uniqueMap.set(key, item);
+      } else {
+        // 이미 존재하는 경우, 요청한 날짜와 더 정확히 일치하는 데이터를 우선시할 수 있음
+        if (datePart === date) {
+          uniqueMap.set(key, item);
+        }
+      }
+    });
+
+    const uniqueItems = Array.from(uniqueMap.values());
 
     const trains: Train[] = uniqueItems.map((item: any, index: number) => {
       const trainType = mapTrainType(item.vehiclekndid, item.traingradename);
@@ -166,22 +186,39 @@ app.get('/api/stops', async (req, res) => {
     const response = await axios.get(targetUrl, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-      }
+      },
+      responseType: 'text' // 명시적으로 텍스트로 받아 파싱 시도
     });
 
-    const data = response.data;
+    let data = response.data;
+    if (typeof data === 'string') {
+      try {
+        // 혹시 모를 BOM이나 불필요한 문자가 포함된 경우 제거 후 파싱
+        data = JSON.parse(data.trim());
+      } catch (e) {
+        console.error('JSON Parsing failed for rail.blue response');
+        return res.status(500).json({ error: '데이터 형식이 올바르지 않습니다.' });
+      }
+    }
+
     if (!data.s || !Array.isArray(data.s)) {
       return res.status(404).json({ error: '상세 경로 정보를 찾을 수 없습니다.' });
     }
 
     const stops: TrainStop[] = data.s
       .filter((stop: any) => stop.stop !== 'skip')
-      .map((stop: any) => ({
-        station: stop.s.d || stop.s.i,
-        arrTime: stop.a ? stop.a.substring(0, 5) : "--:--",
-        depTime: stop.b ? stop.b.substring(0, 5) : "--:--",
-        stopType: stop.stop
-      }));
+      .map((stop: any) => {
+        const rawStation = stop.s.d || stop.s.i || "";
+        // 역 이름 정규화 (예: "대전 " -> "대전", "서울역" -> "서울")
+        const normalizedStation = rawStation.replace(/역$/, '').trim();
+        
+        return {
+          station: normalizedStation,
+          arrTime: stop.a ? stop.a.substring(0, 5) : "--:--",
+          depTime: stop.b ? stop.b.substring(0, 5) : "--:--",
+          stopType: stop.stop
+        };
+      });
 
     res.json(stops);
   } catch (error: any) {

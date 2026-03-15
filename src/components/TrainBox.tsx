@@ -40,7 +40,13 @@ const TrainBox = ({ train, onClick, type }: TrainBoxProps) => {
       className={`train-box ${getTrainClass(train.type)}`} 
       onClick={() => onClick(train)}
     >
-      <span className="minute">{minute}</span>
+      <span className="minute">
+        {minute}
+        <sup className="train-marker">
+          {train.isOriginStation && <span className="marker-origin">●</span>}
+          {train.viaRouteMarker && <span className="marker-via">{train.viaRouteMarker}</span>}
+        </sup>
+      </span>
       <span className="train-info">{train.type}#{formatTrainNo(train.trainNo)}</span>
       <span className="train-dest">{formatDestination(train.destination)}</span>
     </div>

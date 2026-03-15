@@ -18,6 +18,8 @@ export interface Train {
   depTime: string; // HH:mm
   arrTime: string; // HH:mm
   originalType: string;
+  viaRouteMarker?: string; // "수", "구", "서", "홍내", "홍외"
+  isOriginStation?: boolean; // 당역 출발 마크 (●)
 }
 
 export interface TimetableRequest {
