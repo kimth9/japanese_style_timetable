@@ -34,7 +34,6 @@ jobs:
           path: |
             .
             !node_modules
-            !src
             !.git
             !.github
 
