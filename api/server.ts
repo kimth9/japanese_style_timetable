@@ -16,6 +16,16 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+// 배포 확인을 위한 헬스체크 API
+app.get('/api/health', (req, res) => {
+  res.json({ 
+    status: 'ok', 
+    version: '1.0.2', 
+    timestamp: new Date().toISOString(),
+    cwd: process.cwd()
+  });
+});
+
 const SERVICE_KEYS = [
   "v9G5jEOuxwgs4r9ExyF%2F%2BU6g1YwOzwU6RD4Mbw0C4mlQQ%2FFPaXefgmEB1EKqNdGWrf62kQZAlw4xcBH2VO7K7g%3D%3D"
 ];
@@ -228,13 +238,14 @@ app.get('/api/stops', async (req, res) => {
 });
 
 // 정적 파일 제공 (빌드된 프론트엔드)
-const distPath = path.join(__dirname, '../dist');
-app.use(express.static(distPath)); // dist 폴더 전체를 정적 파일 서비스 루트로 지정
-app.use('/assets', express.static(path.join(distPath, 'assets'))); // asset 폴더도 명시적으로 지정
+const distPath = path.resolve(process.cwd(), 'dist');
+app.use(express.static(distPath));
+app.use('/assets', express.static(path.join(distPath, 'assets')));
 
 app.get('*', (req, res) => {
   if (!req.path.startsWith('/api')) {
-    res.sendFile(path.join(distPath, 'index.html'));
+    const indexPath = path.join(distPath, 'index.html');
+    res.sendFile(indexPath);
   }
 });
 
