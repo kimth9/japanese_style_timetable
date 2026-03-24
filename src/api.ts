@@ -79,7 +79,7 @@ const KEY_INDEX = 0;
 
 // 배포 환경과 개발 환경 구분
 const isProd = import.meta.env.PROD;
-const AZURE_BASE_URL = "https://traintimetable.azurewebsites.net";
+const AZURE_BASE_URL = "https://krtraintimetable.azurewebsites.net";
 const TAGO_BASE = isProd ? AZURE_BASE_URL : "/api-tago";
 const RAILBLUE_BASE = isProd ? AZURE_BASE_URL : "/api-railblue";
 
