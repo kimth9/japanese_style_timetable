@@ -253,8 +253,27 @@ function App() {
 
           <div className="timetable">
             {hours.map(hour => {
-              const departures = trains.filter(t => getAdjustedHour(t.depTime) === hour);
-              const arrivals = trains.filter(t => getAdjustedHour(t.arrTime) === hour);
+              // 시각 문자열("HH:mm")을 정렬 가능한 절대 분 단위 숫자로 변환
+              const getSortValue = (timeStr: string) => {
+                if (!timeStr || !timeStr.includes(':')) return 0;
+                const [hStr, mStr] = timeStr.split(':');
+                const h = parseInt(hStr, 10);
+                const m = parseInt(mStr, 10);
+                // 0~3시 보정 로직 (24~27시)
+                const adjustedH = (h >= 0 && h <= 3) ? h + 24 : h;
+                return adjustedH * 60 + m;
+              };
+
+              // 출발/도착 열차 필터링 및 '불변성을 유지한' 정렬
+              // 1. filter()로 새 배열 생성
+              // 2. [...] 스프레드로 명시적 복사 (Mutation 방지)
+              // 3. sort()로 정렬
+              const departures = [...trains.filter(t => getAdjustedHour(t.depTime) === hour)]
+                .sort((a, b) => getSortValue(a.depTime) - getSortValue(b.depTime));
+
+              const arrivals = [...trains.filter(t => getAdjustedHour(t.arrTime) === hour)]
+                .sort((a, b) => getSortValue(a.arrTime) - getSortValue(b.arrTime));
+                
               if (departures.length === 0 && arrivals.length === 0) return null;
               return (
                 <div key={hour} className="hour-row">

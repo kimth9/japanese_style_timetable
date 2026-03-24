@@ -166,7 +166,6 @@ app.get('/api/timetable', async (req, res) => {
       const depTimeStr = String(item.depplandtime);
       const arrTimeStr = String(item.arrplandtime);
       
-      // 실제 종착역이 제공되면 사용, 없으면 검색 시의 도착역 사용
       const finalDest = item.endplacename ? `${item.endplacename}행` : `${item.arrplacename}행`;
       
       return {
@@ -179,6 +178,9 @@ app.get('/api/timetable', async (req, res) => {
         originalType: item.traingradename
       };
     });
+
+    // 출발 시각 기준 오름차순 정렬 추가
+    trains.sort((a, b) => a.depTime.localeCompare(b.depTime));
 
     res.json({ trains });
   } catch (error: any) {
