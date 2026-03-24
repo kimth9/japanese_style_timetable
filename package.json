@@ -7,8 +7,10 @@
     "dev:frontend": "vite",
     "dev:backend": "tsx api/server.ts",
     "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
-    "build": "tsc && vite build",
-    "start": "tsx api/server.ts"
+    "build": "vite build",
+    "start": "tsx api/server.ts",
+    "serve": "tsx api/server.ts",
+    "build:server": "echo 'Server uses tsx directly for deployment'"
   },
   "engines": {
     "node": ">=22.0.0"

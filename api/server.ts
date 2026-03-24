@@ -240,7 +240,8 @@ app.get('/api/stops', async (req, res) => {
 });
 
 // 정적 파일 제공 (빌드된 프론트엔드)
-const distPath = path.resolve(process.cwd(), 'dist');
+// __dirname은 api 폴더 내부이므로 한 단계 상위로 올라가 dist를 찾습니다.
+const distPath = path.resolve(__dirname, '..', 'dist');
 app.use(express.static(distPath));
 app.use('/assets', express.static(path.join(distPath, 'assets')));
 
@@ -252,5 +253,10 @@ app.get('*', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log('=========================================');
+  console.log(`Server starting...`);
+  console.log(`Port: ${port}`);
+  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`Static path: ${distPath}`);
+  console.log('=========================================');
 });
