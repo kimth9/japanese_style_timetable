@@ -8,8 +8,8 @@
     "dev:backend": "tsx api/server.ts",
     "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
     "build": "vite build",
-    "start": "tsx api/server.ts",
-    "serve": "tsx api/server.ts",
+    "start": "npx tsx api/server.ts",
+    "serve": "npx tsx api/server.ts",
     "build:server": "echo 'Server uses tsx directly for deployment'"
   },
   "engines": {
