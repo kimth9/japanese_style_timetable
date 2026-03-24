@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_WEBAPP_NAME: 'js-rail-proxy-api'
+  AZURE_WEBAPP_NAME: 'traintimetable'
   NODE_VERSION: '24'
 
 jobs:
