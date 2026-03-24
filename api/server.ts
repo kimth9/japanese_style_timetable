@@ -27,7 +27,7 @@ app.get('/api/health', (req, res) => {
 });
 
 const SERVICE_KEYS = [
-  "v9G5jEOuxwgs4r9ExyF%2F%2BU6g1YwOzwU6RD4Mbw0C4mlQQ%2FFPaXefgmEB1EKqNdGWrf62kQZAlw4xcBH2VO7K7g%3D%3D"
+  process.env.DATA_GO_KR_SERVICE_KEY || "v9G5jEOuxwgs4r9ExyF%2F%2BU6g1YwOzwU6RD4Mbw0C4mlQQ%2FFPaXefgmEB1EKqNdGWrf62kQZAlw4xcBH2VO7K7g%3D%3D"
 ];
 
 const stationRank: Record<string, number> = stationRankData;
