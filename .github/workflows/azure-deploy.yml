@@ -31,7 +31,13 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: .
+          path: |
+            .
+            !node_modules
+            !dist
+            # dist는 vite build 후 필요하지만, 클라이언트 파일이므로 포함
+            # 하지만 . 폴더를 그대로 올리는 것보다 필요한 폴더만 명시하는게 좋음
+
 
   deploy:
     runs-on: ubuntu-latest
