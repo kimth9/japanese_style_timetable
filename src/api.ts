@@ -68,12 +68,9 @@ const STATION_MAPPING: Record<string, string> = {
   "수서": "NATH30000", "평택지제": "NATH30536", "동탄": "NATH30326"
 };
 
-// 공공데이터포털 인증키 목록 (현재 API_Key.env에 업데이트된 인코딩 키를 사용합니다)
-const SERVICE_KEYS = [
-  "v9G5jEOuxwgs4r9ExyF%2F%2BU6g1YwOzwU6RD4Mbw0C4mlQQ%2FFPaXefgmEB1EKqNdGWrf62kQZAlw4xcBH2VO7K7g%3D%3D", // Encoding Key 1
-  "ef02050a887a949287368265eae38c0d855d0cfe37a780453c3ecba35bb087b1",
-  "102d5e512766a732af8743b4c2b5e735f5bd60f645e15f135f2a8648835a6530"
-];
+// 주의: 이 파일은 레거시 코드입니다. 실제 API 호출은 서버(api/server.ts)에서 처리합니다.
+// API 키는 서버 환경변수(DATA_GO_KR_SERVICE_KEY)로만 관리합니다.
+const SERVICE_KEYS: string[] = [];
 
 const KEY_INDEX = 0;
 

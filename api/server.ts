@@ -1,5 +1,7 @@
 import express from 'express';
 import cors from 'cors';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 import axios from 'axios';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -13,22 +15,64 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(cors());
+// 보안 헤더 설정
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      imgSrc: ["'self'", "data:"],
+      connectSrc: ["'self'"],
+    }
+  }
+}));
+
+// CORS: 허용 오리진 환경변수로 제어
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim())
+  : ['http://localhost:5173', 'http://localhost:3000'];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    // 서버 사이드 요청(origin 없음)은 허용, 등록된 오리진만 허용
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS 정책에 의해 차단된 요청입니다.'));
+    }
+  },
+  methods: ['GET'],
+  allowedHeaders: ['Content-Type'],
+}));
+
+// Rate Limiting: API 엔드포인트에 적용
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15분
+  max: 100,                  // 창당 최대 100 요청
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: '요청이 너무 많습니다. 15분 후 다시 시도하세요.' },
+});
+
+app.use('/api/', apiLimiter);
 app.use(express.json());
 
-// 배포 확인을 위한 헬스체크 API
+// 배포 확인을 위한 헬스체크 API (내부 정보 노출 최소화)
 app.get('/api/health', (req, res) => {
-  res.json({ 
-    status: 'ok', 
-    version: '1.0.2', 
+  res.json({
+    status: 'ok',
     timestamp: new Date().toISOString(),
-    cwd: process.cwd()
   });
 });
 
-const SERVICE_KEYS = [
-  process.env.DATA_GO_KR_SERVICE_KEY || "v9G5jEOuxwgs4r9ExyF%2F%2BU6g1YwOzwU6RD4Mbw0C4mlQQ%2FFPaXefgmEB1EKqNdGWrf62kQZAlw4xcBH2VO7K7g%3D%3D"
-];
+const SERVICE_KEYS = process.env.DATA_GO_KR_SERVICE_KEY
+  ? [process.env.DATA_GO_KR_SERVICE_KEY]
+  : [];
+
+if (SERVICE_KEYS.length === 0) {
+  console.error('[CRITICAL] DATA_GO_KR_SERVICE_KEY 환경변수가 설정되지 않았습니다.');
+}
 
 const stationRank: Record<string, number> = stationRankData;
 
@@ -49,10 +93,25 @@ function getChoseong(str: string) {
   return result;
 }
 
+// 날짜 형식 검증 (YYYYMMDD)
+function isValidDate(date: unknown): date is string {
+  if (typeof date !== 'string') return false;
+  if (!/^\d{8}$/.test(date)) return false;
+  const y = parseInt(date.substring(0, 4));
+  const m = parseInt(date.substring(4, 6));
+  const d = parseInt(date.substring(6, 8));
+  return y >= 2020 && y <= 2099 && m >= 1 && m <= 12 && d >= 1 && d <= 31;
+}
+
 // 1. 역 검색 API
 app.get('/api/stations', (req, res) => {
   const query = req.query.q as string;
   if (!query) return res.json([]);
+
+  // 입력 길이 제한 및 허용 문자 검증 (한글, 영문, 초성, 괄호만 허용)
+  if (query.length > 30 || !/^[가-힣ㄱ-ㅎa-zA-Z0-9\s()]+$/.test(query)) {
+    return res.status(400).json({ error: '유효하지 않은 검색어입니다.' });
+  }
 
   const isChoseong = /^[ㄱ-ㅎ]+$/.test(query);
   const filtered = ALL_STATIONS.filter(station => {
@@ -107,6 +166,11 @@ function mapTrainType(id: string, name: string) {
 // 2. 열차 시간표 API
 app.get('/api/timetable', async (req, res) => {
   const { dep, arr, date } = req.query;
+
+  if (!isValidDate(date)) {
+    return res.status(400).json({ error: '날짜 형식이 올바르지 않습니다. (YYYYMMDD)' });
+  }
+
   const depNodeId = STATION_MAPPING[dep as string];
   const arrNodeId = STATION_MAPPING[arr as string];
 
@@ -114,9 +178,14 @@ app.get('/api/timetable', async (req, res) => {
     return res.status(400).json({ error: '유효하지 않은 역 이름입니다.' });
   }
 
+  if (SERVICE_KEYS.length === 0) {
+    return res.status(503).json({ error: 'API 키가 설정되지 않았습니다.' });
+  }
+
   try {
     const targetUrl = `https://apis.data.go.kr/1613000/TrainInfo/GetStrtpntAlocFndTrainInfo`;
     const response = await axios.get(targetUrl, {
+      timeout: 10000,
       params: {
         serviceKey: decodeURIComponent(SERVICE_KEYS[0]),
         _type: 'json',
@@ -192,14 +261,25 @@ app.get('/api/timetable', async (req, res) => {
 // 3. 열차 정차역 상세 API
 app.get('/api/stops', async (req, res) => {
   const { trainNo, date } = req.query;
-  const targetUrl = `https://rail.blue/railroad/logis/getscheduleinfo.aspx?u=1&train=${trainNo}&date=${date}&json=1&version=20180415`;
+
+  // 열차 번호: 1~6자리 숫자만 허용
+  if (typeof trainNo !== 'string' || !/^\d{1,6}$/.test(trainNo)) {
+    return res.status(400).json({ error: '유효하지 않은 열차 번호입니다.' });
+  }
+
+  if (!isValidDate(date)) {
+    return res.status(400).json({ error: '날짜 형식이 올바르지 않습니다. (YYYYMMDD)' });
+  }
+
+  const targetUrl = `https://rail.blue/railroad/logis/getscheduleinfo.aspx?u=1&train=${encodeURIComponent(trainNo)}&date=${encodeURIComponent(date)}&json=1&version=20180415`;
 
   try {
     const response = await axios.get(targetUrl, {
+      timeout: 10000,
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
       },
-      responseType: 'text' // 명시적으로 텍스트로 받아 파싱 시도
+      responseType: 'text'
     });
 
     let data = response.data;
