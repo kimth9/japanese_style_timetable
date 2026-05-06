@@ -46,17 +46,35 @@ app.use(cors({
   allowedHeaders: ['Content-Type'],
 }));
 
-// Rate Limiting: API 엔드포인트에 적용
-const apiLimiter = rateLimit({
+// Rate Limiting: 엔드포인트별 적용
+const timetableLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15분
-  max: 100,                  // 창당 최대 100 요청
+  max: 60,                   // 시간표 조회: 15분당 60건
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: '요청이 너무 많습니다. 15분 후 다시 시도하세요.' },
 });
 
-app.use('/api/', apiLimiter);
+const stopsLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15분
+  max: 500,                  // 정차역 조회: 15분당 500건 (백그라운드 배치 요청 허용)
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: '요청이 너무 많습니다. 15분 후 다시 시도하세요.' },
+});
+
+const stationsLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15분
+  max: 200,                  // 역 검색: 15분당 200건
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: '요청이 너무 많습니다. 15분 후 다시 시도하세요.' },
+});
+
 app.use(express.json());
+app.use('/api/timetable', timetableLimiter);
+app.use('/api/stops', stopsLimiter);
+app.use('/api/stations', stationsLimiter);
 
 // 배포 확인을 위한 헬스체크 API (내부 정보 노출 최소화)
 app.get('/api/health', (req, res) => {
