@@ -1,0 +1,594 @@
+2026-03-24T11:29:17.6034936Z State: Starting, Action: EstablishingSiteNetworks, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: , DetailsLevel: INFO
+2026-03-24T11:29:20.2697750Z State: Starting, Action: StartingSiteContainers, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: , DetailsLevel: INFO
+2026-03-24T11:29:20.2768161Z Container start method called.
+2026-03-24T11:29:20.2782243Z State: Starting, Action: PullingImage, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Pulling image 10.1.0.5:13209/appsvc/node:24-lts_20260115.4.tuxprod for krtraintimetable., DetailsLevel: INFO
+2026-03-24T11:29:20.2785249Z Establishing network.
+2026-03-24T11:29:20.2787255Z Pulling image: appsvc/node:24-lts_20260115.4.tuxprod.
+2026-03-24T11:29:20.8401037Z Container is starting.
+2026-03-24T11:29:20.8404237Z State: Starting, Action: MountingVolumes, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Mounting volumes for krtraintimetable., DetailsLevel: INFO
+2026-03-24T11:29:20.8405654Z Establishing user namespace if not established already.
+2026-03-24T11:29:20.8406725Z Establishing network if not established already.
+2026-03-24T11:29:20.8408066Z Mounting volumes.
+2026-03-24T11:29:20.8409837Z Nested mountpoint 
+2026-03-24T11:29:20.8601138Z Nested mountpoint volatile/logs
+2026-03-24T11:29:20.9196309Z Nested mountpoint 
+2026-03-24T11:29:20.9478110Z Nested mountpoint 
+2026-03-24T11:29:21.0335475Z Nested mountpoint 
+2026-03-24T11:29:21.4932551Z State: Starting, Action: CreatingContainer, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Finished pulling container image and mounting volumes for krtraintimetable. Allocatinng the rest of the container resources to finish container creation., DetailsLevel: INFO
+2026-03-24T11:29:21.4933890Z Creating container.
+2026-03-24T11:29:21.4935068Z Creating pipes for streaming container io.
+2026-03-24T11:29:21.4936177Z Creating stdout named pipe at /podr/container/pipe/e292e6df39b6_krtraintimetable/stdout_7f10d100d6154571bcee71200ca3f803.
+2026-03-24T11:29:21.4938553Z Successfully created stdout named pipe at: /podr/container/pipe/e292e6df39b6_krtraintimetable/stdout_7f10d100d6154571bcee71200ca3f803.
+2026-03-24T11:29:21.4939661Z Opening named pipe /podr/container/pipe/e292e6df39b6_krtraintimetable/stdout_7f10d100d6154571bcee71200ca3f803 for reading in non-blocking mode.
+2026-03-24T11:29:21.4940929Z Successfully opened named pipe: /podr/container/pipe/e292e6df39b6_krtraintimetable/stdout_7f10d100d6154571bcee71200ca3f803.
+2026-03-24T11:29:21.4942023Z Successfully removed non-blocking flag from /podr/container/pipe/e292e6df39b6_krtraintimetable/stdout_7f10d100d6154571bcee71200ca3f803.
+2026-03-24T11:29:21.5026059Z Creating stderr named pipe at /podr/container/pipe/e292e6df39b6_krtraintimetable/stderr_b76877e9e14b4de38e87e83dc7263528.
+2026-03-24T11:29:21.5028193Z Successfully created stderr named pipe at: /podr/container/pipe/e292e6df39b6_krtraintimetable/stderr_b76877e9e14b4de38e87e83dc7263528.
+2026-03-24T11:29:21.5029257Z Opening named pipe /podr/container/pipe/e292e6df39b6_krtraintimetable/stderr_b76877e9e14b4de38e87e83dc7263528 for reading in non-blocking mode.
+2026-03-24T11:29:21.5031183Z Successfully opened named pipe: /podr/container/pipe/e292e6df39b6_krtraintimetable/stderr_b76877e9e14b4de38e87e83dc7263528.
+2026-03-24T11:29:21.5032274Z Successfully removed non-blocking flag from /podr/container/pipe/e292e6df39b6_krtraintimetable/stderr_b76877e9e14b4de38e87e83dc7263528.
+2026-03-24T11:29:21.5033913Z Creating container with image: appsvc/node:24-lts_20260115.4.tuxprod from registry: 10.1.0.5:13209 and fully qualified image name: 10.1.0.5:13209/appsvc/node:24-lts_20260115.4.tuxprod
+2026-03-24T11:29:22.4053534Z Starting container: e292e6df39b6_krtraintimetable.
+2026-03-24T11:29:22.5007122Z Starting watchers and probes.
+2026-03-24T11:29:22.5024991Z Starting metrics collection.
+2026-03-24T11:29:22.5102996Z Container is running.
+2026-03-24T11:29:22.5104745Z State: Starting, Action: CreatingContainer, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Container krtraintimetable successfully created and is running., DetailsLevel: INFO
+2026-03-24T11:29:22.6806277Z Container start method finished after 2403 ms.
+2026-03-24T11:29:22.6808544Z State: Starting, Action: InitiatingSiteWarmUpProbe, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Container krtraintimetable successfully created and is running., DetailsLevel: INFO
+2026-03-24T11:29:22.6808964Z State: Starting, Action: WaitingForSiteWarmUpProbeSuccess, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: INFO
+2026-03-24T11:30:13.5186787Z Container has finished running with exit code: 127.
+2026-03-24T11:30:13.5193170Z Container is terminating. Grace period: 5 seconds.
+2026-03-24T11:30:13.5276620Z Stop and delete container. Retry count = 0
+2026-03-24T11:30:13.5287522Z Stopping container: e292e6df39b6_krtraintimetable.
+2026-03-24T11:30:13.7029584Z Deleting container: e292e6df39b6_krtraintimetable. Retry count = 0
+2026-03-24T11:30:14.2055188Z Container spec TerminationMessagePolicy  path 
+2026-03-24T11:30:14.2129289Z Container is terminated. Total time elapsed: 693 ms.
+2026-03-24T11:30:14.2131934Z Site container: krtraintimetable terminated during site startup.
+2026-03-24T11:30:14.2403479Z State: Stopping, Action: CancellingStartup, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:30:14.2797246Z Site startup probe failed after 51.5700091 seconds.
+2026-03-24T11:30:14.5015903Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:30:14, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:30:14.5217675Z Failed to start site. Revert by stopping site.
+2026-03-24T11:30:14.5477456Z State: Stopping, Action: StoppingSite, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:30:14, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:30:14.5495368Z State: Stopping, Action: StoppingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:30:14, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:30:14.5495639Z Site: krtraintimetable stopped.
+2026-03-24T11:30:14.5685074Z State: Stopping, Action: UnmountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:30:14, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:30:15.1945813Z State: Stopping, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:30:14, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:30:15.5818012Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:30:14, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/24/2026 11:30:15 (UTC), DetailsLevel: ERR
+2026-03-24T11:30:15.8854023Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:30:14, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/24/2026 11:30:15 (UTC), DetailsLevel: ERR
+2026-03-24T11:30:16.3613053Z State: Starting, Action: EstablishingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:30:14, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/24/2026 11:30:15 (UTC), DetailsLevel: ERR
+2026-03-24T11:30:18.2934102Z State: Starting, Action: StartingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:30:14, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/24/2026 11:30:15 (UTC), DetailsLevel: ERR
+2026-03-24T11:30:18.2936091Z Container start method called.
+2026-03-24T11:30:18.3038075Z State: Starting, Action: PullingImage, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:30:14, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pulling image 10.1.0.5:13209/appsvc/node:24-lts_20260115.4.tuxprod for krtraintimetable., DetailsLevel: INFO
+2026-03-24T11:30:18.3041114Z Establishing network.
+2026-03-24T11:30:18.3392890Z Pulling image: appsvc/node:24-lts_20260115.4.tuxprod.
+2026-03-24T11:30:18.9119298Z Container is starting.
+2026-03-24T11:30:18.9123838Z State: Starting, Action: MountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:30:14, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Mounting volumes for krtraintimetable., DetailsLevel: INFO
+2026-03-24T11:30:18.9125724Z Establishing user namespace if not established already.
+2026-03-24T11:30:18.9127476Z Establishing network if not established already.
+2026-03-24T11:30:18.9129207Z Mounting volumes.
+2026-03-24T11:30:18.9193468Z Nested mountpoint 
+2026-03-24T11:30:18.9402891Z Nested mountpoint volatile/logs
+2026-03-24T11:30:19.0121118Z Nested mountpoint 
+2026-03-24T11:30:19.0496236Z Nested mountpoint 
+2026-03-24T11:30:19.1261009Z Nested mountpoint 
+2026-03-24T11:30:19.6109533Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:30:14, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Finished pulling container image and mounting volumes for krtraintimetable. Allocatinng the rest of the container resources to finish container creation., DetailsLevel: INFO
+2026-03-24T11:30:19.6112462Z Creating container.
+2026-03-24T11:30:19.6113771Z Creating pipes for streaming container io.
+2026-03-24T11:30:19.6115066Z Creating stdout named pipe at /podr/container/pipe/b08e0755ce5e_krtraintimetable/stdout_f1d648bdf1c848db92b02c45436c7132.
+2026-03-24T11:30:19.6117699Z Successfully created stdout named pipe at: /podr/container/pipe/b08e0755ce5e_krtraintimetable/stdout_f1d648bdf1c848db92b02c45436c7132.
+2026-03-24T11:30:19.6118826Z Opening named pipe /podr/container/pipe/b08e0755ce5e_krtraintimetable/stdout_f1d648bdf1c848db92b02c45436c7132 for reading in non-blocking mode.
+2026-03-24T11:30:19.6120356Z Successfully opened named pipe: /podr/container/pipe/b08e0755ce5e_krtraintimetable/stdout_f1d648bdf1c848db92b02c45436c7132.
+2026-03-24T11:30:19.6121452Z Successfully removed non-blocking flag from /podr/container/pipe/b08e0755ce5e_krtraintimetable/stdout_f1d648bdf1c848db92b02c45436c7132.
+2026-03-24T11:30:19.6122951Z Creating stderr named pipe at /podr/container/pipe/b08e0755ce5e_krtraintimetable/stderr_9ddde700359444b99fcdad645a226413.
+2026-03-24T11:30:19.6124963Z Successfully created stderr named pipe at: /podr/container/pipe/b08e0755ce5e_krtraintimetable/stderr_9ddde700359444b99fcdad645a226413.
+2026-03-24T11:30:19.6125972Z Opening named pipe /podr/container/pipe/b08e0755ce5e_krtraintimetable/stderr_9ddde700359444b99fcdad645a226413 for reading in non-blocking mode.
+2026-03-24T11:30:19.6127320Z Successfully opened named pipe: /podr/container/pipe/b08e0755ce5e_krtraintimetable/stderr_9ddde700359444b99fcdad645a226413.
+2026-03-24T11:30:19.6128481Z Successfully removed non-blocking flag from /podr/container/pipe/b08e0755ce5e_krtraintimetable/stderr_9ddde700359444b99fcdad645a226413.
+2026-03-24T11:30:19.6130184Z Creating container with image: appsvc/node:24-lts_20260115.4.tuxprod from registry: 10.1.0.5:13209 and fully qualified image name: 10.1.0.5:13209/appsvc/node:24-lts_20260115.4.tuxprod
+2026-03-24T11:30:20.3558685Z Starting container: b08e0755ce5e_krtraintimetable.
+2026-03-24T11:30:20.5148174Z Starting watchers and probes.
+2026-03-24T11:30:20.5343250Z Starting metrics collection.
+2026-03-24T11:30:20.5346094Z Container is running.
+2026-03-24T11:30:20.5346911Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:30:14, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container krtraintimetable successfully created and is running., DetailsLevel: INFO
+2026-03-24T11:30:21.0311149Z Container start method finished after 2737 ms.
+2026-03-24T11:30:21.0313664Z State: Starting, Action: InitiatingSiteWarmUpProbe, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:30:14, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container krtraintimetable successfully created and is running., DetailsLevel: INFO
+2026-03-24T11:30:21.0313993Z State: Starting, Action: WaitingForSiteWarmUpProbeSuccess, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:30:14, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: INFO
+2026-03-24T11:31:02.1059803Z Container has finished running with exit code: 127.
+2026-03-24T11:31:02.1448759Z Container is terminating. Grace period: 5 seconds.
+2026-03-24T11:31:02.1542131Z Stop and delete container. Retry count = 0
+2026-03-24T11:31:02.1550268Z Stopping container: b08e0755ce5e_krtraintimetable.
+2026-03-24T11:31:02.3954245Z Deleting container: b08e0755ce5e_krtraintimetable. Retry count = 0
+2026-03-24T11:31:02.8124182Z Container spec TerminationMessagePolicy  path 
+2026-03-24T11:31:02.8129602Z Container is terminated. Total time elapsed: 667 ms.
+2026-03-24T11:31:02.8141614Z Site container: krtraintimetable terminated during site startup.
+2026-03-24T11:31:02.8145565Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:30:14, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:31:02.8698098Z Site startup probe failed after 41.7573262 seconds.
+2026-03-24T11:31:03.2168390Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:31:03.2316874Z Failed to start site. Revert by stopping site.
+2026-03-24T11:31:03.2320848Z State: Stopping, Action: StoppingSite, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:31:03.2967396Z State: Stopping, Action: StoppingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:31:03.2967928Z Site: krtraintimetable stopped.
+2026-03-24T11:31:03.3072233Z State: Stopping, Action: UnmountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:31:03.8580010Z State: Stopping, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:31:04.1993517Z Site: krtraintimetable will be blocked for 1 minutes till 03/24/2026 11:32:04
+2026-03-24T11:31:04.2166915Z State: Blocked, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site: krtraintimetable will be blocked for 1 minutes till 03/24/2026 11:32:04, DetailsLevel: WARN
+2026-03-24T11:31:04.2376860Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/24/2026 11:31:04 (UTC), DetailsLevel: WARN
+2026-03-24T11:31:04.4327286Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/24/2026 11:31:04 (UTC), DetailsLevel: WARN
+2026-03-24T11:31:07.1770566Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:32:04, DetailsLevel: WARN
+2026-03-24T11:31:07.1771119Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:31:07.4728396Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:32:04, DetailsLevel: WARN
+2026-03-24T11:31:07.4728765Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:31:09.5632582Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:32:04, DetailsLevel: WARN
+2026-03-24T11:31:09.5634360Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:31:14.8336683Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:32:04, DetailsLevel: WARN
+2026-03-24T11:31:14.8339598Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:31:19.9805770Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:32:04, DetailsLevel: WARN
+2026-03-24T11:31:19.9807720Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:31:25.1364047Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:32:04, DetailsLevel: WARN
+2026-03-24T11:31:25.1364400Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:31:30.3224624Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:32:04, DetailsLevel: WARN
+2026-03-24T11:31:30.3226513Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:31:35.4752358Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:32:04, DetailsLevel: WARN
+2026-03-24T11:31:35.4757348Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:31:40.6587812Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:32:04, DetailsLevel: WARN
+2026-03-24T11:31:40.6588886Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:31:45.8409170Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:32:04, DetailsLevel: WARN
+2026-03-24T11:31:45.8411113Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:31:51.0886513Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:32:04, DetailsLevel: WARN
+2026-03-24T11:31:51.0887397Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:31:56.2644137Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:32:04, DetailsLevel: WARN
+2026-03-24T11:31:56.2644992Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:32:01.4585910Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:32:04, DetailsLevel: WARN
+2026-03-24T11:32:01.4586717Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:32:04.2392096Z Site: krtraintimetable is unblocked.
+2026-03-24T11:32:06.6124587Z State: Starting, Action: EstablishingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:32:04, DetailsLevel: WARN
+2026-03-24T11:32:08.7333164Z State: Starting, Action: StartingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:32:04, DetailsLevel: WARN
+2026-03-24T11:32:08.7407648Z Container start method called.
+2026-03-24T11:32:08.7415065Z State: Starting, Action: PullingImage, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pulling image 10.1.0.5:13209/appsvc/node:24-lts_20260115.4.tuxprod for krtraintimetable., DetailsLevel: INFO
+2026-03-24T11:32:08.7504219Z Establishing network.
+2026-03-24T11:32:08.7506766Z Pulling image: appsvc/node:24-lts_20260115.4.tuxprod.
+2026-03-24T11:32:09.2443232Z Container is starting.
+2026-03-24T11:32:09.2446085Z State: Starting, Action: MountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Mounting volumes for krtraintimetable., DetailsLevel: INFO
+2026-03-24T11:32:09.2456365Z Establishing user namespace if not established already.
+2026-03-24T11:32:09.2626846Z Establishing network if not established already.
+2026-03-24T11:32:09.2629492Z Mounting volumes.
+2026-03-24T11:32:09.2631670Z Nested mountpoint 
+2026-03-24T11:32:09.2651551Z Nested mountpoint volatile/logs
+2026-03-24T11:32:09.3298280Z Nested mountpoint 
+2026-03-24T11:32:09.3651940Z Nested mountpoint 
+2026-03-24T11:32:09.3682589Z Nested mountpoint 
+2026-03-24T11:32:10.4110054Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Finished pulling container image and mounting volumes for krtraintimetable. Allocatinng the rest of the container resources to finish container creation., DetailsLevel: INFO
+2026-03-24T11:32:10.4175456Z Creating container.
+2026-03-24T11:32:10.4179646Z Creating pipes for streaming container io.
+2026-03-24T11:32:10.4181536Z Creating stdout named pipe at /podr/container/pipe/5e44da47fe8a_krtraintimetable/stdout_5e7a8dae2615445d99de20fc3779827a.
+2026-03-24T11:32:10.4202561Z Successfully created stdout named pipe at: /podr/container/pipe/5e44da47fe8a_krtraintimetable/stdout_5e7a8dae2615445d99de20fc3779827a.
+2026-03-24T11:32:10.4204569Z Opening named pipe /podr/container/pipe/5e44da47fe8a_krtraintimetable/stdout_5e7a8dae2615445d99de20fc3779827a for reading in non-blocking mode.
+2026-03-24T11:32:10.4206523Z Successfully opened named pipe: /podr/container/pipe/5e44da47fe8a_krtraintimetable/stdout_5e7a8dae2615445d99de20fc3779827a.
+2026-03-24T11:32:10.4287697Z Successfully removed non-blocking flag from /podr/container/pipe/5e44da47fe8a_krtraintimetable/stdout_5e7a8dae2615445d99de20fc3779827a.
+2026-03-24T11:32:10.4297634Z Creating stderr named pipe at /podr/container/pipe/5e44da47fe8a_krtraintimetable/stderr_a9d2e127b32d45f48684337a477bea17.
+2026-03-24T11:32:10.4301316Z Successfully created stderr named pipe at: /podr/container/pipe/5e44da47fe8a_krtraintimetable/stderr_a9d2e127b32d45f48684337a477bea17.
+2026-03-24T11:32:10.4476740Z Opening named pipe /podr/container/pipe/5e44da47fe8a_krtraintimetable/stderr_a9d2e127b32d45f48684337a477bea17 for reading in non-blocking mode.
+2026-03-24T11:32:10.4621845Z Successfully opened named pipe: /podr/container/pipe/5e44da47fe8a_krtraintimetable/stderr_a9d2e127b32d45f48684337a477bea17.
+2026-03-24T11:32:10.4626330Z Successfully removed non-blocking flag from /podr/container/pipe/5e44da47fe8a_krtraintimetable/stderr_a9d2e127b32d45f48684337a477bea17.
+2026-03-24T11:32:10.4628781Z Creating container with image: appsvc/node:24-lts_20260115.4.tuxprod from registry: 10.1.0.5:13209 and fully qualified image name: 10.1.0.5:13209/appsvc/node:24-lts_20260115.4.tuxprod
+2026-03-24T11:32:12.0940118Z Starting container: 5e44da47fe8a_krtraintimetable.
+2026-03-24T11:32:12.2557418Z Starting watchers and probes.
+2026-03-24T11:32:12.2577065Z Starting metrics collection.
+2026-03-24T11:32:12.3096642Z Container is running.
+2026-03-24T11:32:12.3107088Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container krtraintimetable successfully created and is running., DetailsLevel: INFO
+2026-03-24T11:32:12.7222297Z Container start method finished after 3981 ms.
+2026-03-24T11:32:12.7525286Z State: Starting, Action: InitiatingSiteWarmUpProbe, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container krtraintimetable successfully created and is running., DetailsLevel: INFO
+2026-03-24T11:32:12.7525770Z State: Starting, Action: WaitingForSiteWarmUpProbeSuccess, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: INFO
+2026-03-24T11:33:15.5294901Z Container has finished running with exit code: 127.
+2026-03-24T11:33:15.5307166Z Container is terminating. Grace period: 5 seconds.
+2026-03-24T11:33:15.5395209Z Stop and delete container. Retry count = 0
+2026-03-24T11:33:15.5396577Z Stopping container: 5e44da47fe8a_krtraintimetable.
+2026-03-24T11:33:15.6335050Z Deleting container: 5e44da47fe8a_krtraintimetable. Retry count = 0
+2026-03-24T11:33:16.0316648Z Container spec TerminationMessagePolicy  path 
+2026-03-24T11:33:16.0418400Z Container is terminated. Total time elapsed: 510 ms.
+2026-03-24T11:33:16.0421761Z Site container: krtraintimetable terminated during site startup.
+2026-03-24T11:33:16.0602246Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:31:03, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:33:16.1210626Z Site startup probe failed after 63.3385855 seconds.
+2026-03-24T11:33:16.3799563Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:33:16.3899300Z Failed to start site. Revert by stopping site.
+2026-03-24T11:33:16.4015140Z State: Stopping, Action: StoppingSite, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:33:16.4285494Z State: Stopping, Action: StoppingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:33:16.4286128Z Site: krtraintimetable stopped.
+2026-03-24T11:33:16.4468175Z State: Stopping, Action: UnmountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:33:17.0848728Z State: Stopping, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:33:17.4670172Z Site: krtraintimetable will be blocked for 1 minutes till 03/24/2026 11:34:17
+2026-03-24T11:33:17.4733380Z State: Blocked, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site: krtraintimetable will be blocked for 1 minutes till 03/24/2026 11:34:17, DetailsLevel: WARN
+2026-03-24T11:33:17.4907460Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/24/2026 11:33:17 (UTC), DetailsLevel: WARN
+2026-03-24T11:33:17.7358827Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/24/2026 11:33:17 (UTC), DetailsLevel: WARN
+2026-03-24T11:33:22.9913439Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:34:17, DetailsLevel: WARN
+2026-03-24T11:33:22.9913855Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:33:28.1389817Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:34:17, DetailsLevel: WARN
+2026-03-24T11:33:28.1392709Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:33:33.4066382Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:34:17, DetailsLevel: WARN
+2026-03-24T11:33:33.4067278Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:33:38.5818482Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:34:17, DetailsLevel: WARN
+2026-03-24T11:33:38.5818882Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:33:43.7527083Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:34:17, DetailsLevel: WARN
+2026-03-24T11:33:43.7527463Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:33:48.9008901Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:34:17, DetailsLevel: WARN
+2026-03-24T11:33:48.9009295Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:33:54.0418841Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:34:17, DetailsLevel: WARN
+2026-03-24T11:33:54.0419732Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:33:59.1612802Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:34:17, DetailsLevel: WARN
+2026-03-24T11:33:59.1613834Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:34:04.3276005Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:34:17, DetailsLevel: WARN
+2026-03-24T11:34:04.3276404Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:34:09.4858689Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:34:17, DetailsLevel: WARN
+2026-03-24T11:34:09.4859538Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:34:14.6437384Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:34:17, DetailsLevel: WARN
+2026-03-24T11:34:14.6438239Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:34:17.4688391Z Site: krtraintimetable is unblocked.
+2026-03-24T11:34:19.8682295Z State: Starting, Action: EstablishingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:34:17, DetailsLevel: WARN
+2026-03-24T11:34:21.7118878Z State: Starting, Action: StartingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:34:17, DetailsLevel: WARN
+2026-03-24T11:34:21.7120464Z Container start method called.
+2026-03-24T11:34:21.7121207Z State: Starting, Action: PullingImage, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pulling image 10.1.0.5:13209/appsvc/node:24-lts_20260115.4.tuxprod for krtraintimetable., DetailsLevel: INFO
+2026-03-24T11:34:21.7122374Z Establishing network.
+2026-03-24T11:34:21.7123607Z Pulling image: appsvc/node:24-lts_20260115.4.tuxprod.
+2026-03-24T11:34:22.1344370Z Container is starting.
+2026-03-24T11:34:22.1350309Z State: Starting, Action: MountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Mounting volumes for krtraintimetable., DetailsLevel: INFO
+2026-03-24T11:34:22.1352385Z Establishing user namespace if not established already.
+2026-03-24T11:34:22.1370440Z Establishing network if not established already.
+2026-03-24T11:34:22.1437848Z Mounting volumes.
+2026-03-24T11:34:22.1440730Z Nested mountpoint 
+2026-03-24T11:34:22.1930722Z Nested mountpoint volatile/logs
+2026-03-24T11:34:22.2319283Z Nested mountpoint 
+2026-03-24T11:34:22.2327867Z Nested mountpoint 
+2026-03-24T11:34:22.2394170Z Nested mountpoint 
+2026-03-24T11:34:22.7351134Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Finished pulling container image and mounting volumes for krtraintimetable. Allocatinng the rest of the container resources to finish container creation., DetailsLevel: INFO
+2026-03-24T11:34:22.7353444Z Creating container.
+2026-03-24T11:34:22.7354725Z Creating pipes for streaming container io.
+2026-03-24T11:34:22.7355816Z Creating stdout named pipe at /podr/container/pipe/a4891e2f4584_krtraintimetable/stdout_a6e59ef319a14a1784c62b25e71e1bb7.
+2026-03-24T11:34:22.7359460Z Successfully created stdout named pipe at: /podr/container/pipe/a4891e2f4584_krtraintimetable/stdout_a6e59ef319a14a1784c62b25e71e1bb7.
+2026-03-24T11:34:22.7361087Z Opening named pipe /podr/container/pipe/a4891e2f4584_krtraintimetable/stdout_a6e59ef319a14a1784c62b25e71e1bb7 for reading in non-blocking mode.
+2026-03-24T11:34:22.7362922Z Successfully opened named pipe: /podr/container/pipe/a4891e2f4584_krtraintimetable/stdout_a6e59ef319a14a1784c62b25e71e1bb7.
+2026-03-24T11:34:22.7364085Z Successfully removed non-blocking flag from /podr/container/pipe/a4891e2f4584_krtraintimetable/stdout_a6e59ef319a14a1784c62b25e71e1bb7.
+2026-03-24T11:34:22.7365582Z Creating stderr named pipe at /podr/container/pipe/a4891e2f4584_krtraintimetable/stderr_a83dbe98d8184b3aa3adacc4ed1b4b04.
+2026-03-24T11:34:22.7367156Z Successfully created stderr named pipe at: /podr/container/pipe/a4891e2f4584_krtraintimetable/stderr_a83dbe98d8184b3aa3adacc4ed1b4b04.
+2026-03-24T11:34:22.7368203Z Opening named pipe /podr/container/pipe/a4891e2f4584_krtraintimetable/stderr_a83dbe98d8184b3aa3adacc4ed1b4b04 for reading in non-blocking mode.
+2026-03-24T11:34:22.7369516Z Successfully opened named pipe: /podr/container/pipe/a4891e2f4584_krtraintimetable/stderr_a83dbe98d8184b3aa3adacc4ed1b4b04.
+2026-03-24T11:34:22.7434806Z Successfully removed non-blocking flag from /podr/container/pipe/a4891e2f4584_krtraintimetable/stderr_a83dbe98d8184b3aa3adacc4ed1b4b04.
+2026-03-24T11:34:22.7436610Z Creating container with image: appsvc/node:24-lts_20260115.4.tuxprod from registry: 10.1.0.5:13209 and fully qualified image name: 10.1.0.5:13209/appsvc/node:24-lts_20260115.4.tuxprod
+2026-03-24T11:34:23.4082093Z Starting container: a4891e2f4584_krtraintimetable.
+2026-03-24T11:34:23.5383519Z Starting watchers and probes.
+2026-03-24T11:34:23.5389379Z Starting metrics collection.
+2026-03-24T11:34:23.5516563Z Container is running.
+2026-03-24T11:34:23.5518104Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container krtraintimetable successfully created and is running., DetailsLevel: INFO
+2026-03-24T11:34:23.7688692Z Container start method finished after 2055 ms.
+2026-03-24T11:34:23.8800075Z State: Starting, Action: InitiatingSiteWarmUpProbe, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container krtraintimetable successfully created and is running., DetailsLevel: INFO
+2026-03-24T11:34:23.8800999Z State: Starting, Action: WaitingForSiteWarmUpProbeSuccess, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: INFO
+2026-03-24T11:35:05.9962234Z Container has finished running with exit code: 127.
+2026-03-24T11:35:05.9966265Z Container is terminating. Grace period: 5 seconds.
+2026-03-24T11:35:06.0077145Z Stop and delete container. Retry count = 0
+2026-03-24T11:35:06.0180502Z Stopping container: a4891e2f4584_krtraintimetable.
+2026-03-24T11:35:06.1261412Z Deleting container: a4891e2f4584_krtraintimetable. Retry count = 0
+2026-03-24T11:35:06.4258298Z Container spec TerminationMessagePolicy  path 
+2026-03-24T11:35:06.4292885Z Container is terminated. Total time elapsed: 432 ms.
+2026-03-24T11:35:06.4564108Z Site container: krtraintimetable terminated during site startup.
+2026-03-24T11:35:06.4566117Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:33:16, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:35:06.4844983Z Site startup probe failed after 42.6037327 seconds.
+2026-03-24T11:35:06.6674217Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:35:06.6752054Z Failed to start site. Revert by stopping site.
+2026-03-24T11:35:06.6841440Z State: Stopping, Action: StoppingSite, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:35:06.6845111Z State: Stopping, Action: StoppingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:35:06.6845295Z Site: krtraintimetable stopped.
+2026-03-24T11:35:06.6961014Z State: Stopping, Action: UnmountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:35:07.1368707Z State: Stopping, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:35:07.2949172Z Site: krtraintimetable will be blocked for 2 minutes till 03/24/2026 11:37:07
+2026-03-24T11:35:07.2951058Z State: Blocked, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site: krtraintimetable will be blocked for 2 minutes till 03/24/2026 11:37:07, DetailsLevel: WARN
+2026-03-24T11:35:07.2954383Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/24/2026 11:35:07 (UTC), DetailsLevel: WARN
+2026-03-24T11:35:07.7215786Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/24/2026 11:35:07 (UTC), DetailsLevel: WARN
+2026-03-24T11:35:12.5401727Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:37:07, DetailsLevel: WARN
+2026-03-24T11:35:12.5402356Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:35:17.7152012Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:37:07, DetailsLevel: WARN
+2026-03-24T11:35:17.7169204Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:35:22.9327023Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:37:07, DetailsLevel: WARN
+2026-03-24T11:35:22.9329094Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:35:28.0436564Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:37:07, DetailsLevel: WARN
+2026-03-24T11:35:28.0437103Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:35:33.1993824Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:37:07, DetailsLevel: WARN
+2026-03-24T11:35:33.1995320Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:35:38.3379552Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:37:07, DetailsLevel: WARN
+2026-03-24T11:35:38.3389148Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:35:43.6333034Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:37:07, DetailsLevel: WARN
+2026-03-24T11:35:43.6334325Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:35:48.8757155Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:37:07, DetailsLevel: WARN
+2026-03-24T11:35:48.8830912Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:35:53.9910767Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:37:07, DetailsLevel: WARN
+2026-03-24T11:35:53.9911157Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:35:59.2411758Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:37:07, DetailsLevel: WARN
+2026-03-24T11:35:59.2412531Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:36:04.6642466Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:37:07, DetailsLevel: WARN
+2026-03-24T11:36:04.6642966Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:36:10.1032147Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:37:07, DetailsLevel: WARN
+2026-03-24T11:36:10.1045447Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:36:15.3534913Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:37:07, DetailsLevel: WARN
+2026-03-24T11:36:15.3538613Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:36:20.7446921Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:37:07, DetailsLevel: WARN
+2026-03-24T11:36:20.7543744Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:36:26.0502061Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:37:07, DetailsLevel: WARN
+2026-03-24T11:36:26.0512981Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:36:31.3447678Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:37:07, DetailsLevel: WARN
+2026-03-24T11:36:31.3448550Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:36:36.5540440Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:37:07, DetailsLevel: WARN
+2026-03-24T11:36:36.5546101Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:36:41.8133398Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:37:07, DetailsLevel: WARN
+2026-03-24T11:36:41.8139214Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:36:47.0911951Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:37:07, DetailsLevel: WARN
+2026-03-24T11:36:47.0913516Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:36:52.3617477Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:37:07, DetailsLevel: WARN
+2026-03-24T11:36:52.3618274Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:36:57.6480547Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:37:07, DetailsLevel: WARN
+2026-03-24T11:36:57.6485311Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:37:02.8152378Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:37:07, DetailsLevel: WARN
+2026-03-24T11:37:02.8152896Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:37:07.2971342Z Site: krtraintimetable is unblocked.
+2026-03-24T11:37:08.0061786Z State: Starting, Action: EstablishingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:37:07, DetailsLevel: WARN
+2026-03-24T11:37:11.8525611Z State: Starting, Action: StartingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:37:07, DetailsLevel: WARN
+2026-03-24T11:37:11.8722851Z Container start method called.
+2026-03-24T11:37:11.8806012Z State: Starting, Action: PullingImage, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pulling image 10.1.0.5:13209/appsvc/node:24-lts_20260115.4.tuxprod for krtraintimetable., DetailsLevel: INFO
+2026-03-24T11:37:11.8811722Z Establishing network.
+2026-03-24T11:37:11.8818768Z Pulling image: appsvc/node:24-lts_20260115.4.tuxprod.
+2026-03-24T11:37:12.4728225Z Container is starting.
+2026-03-24T11:37:12.4734381Z State: Starting, Action: MountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Mounting volumes for krtraintimetable., DetailsLevel: INFO
+2026-03-24T11:37:12.4738263Z Establishing user namespace if not established already.
+2026-03-24T11:37:12.4740126Z Establishing network if not established already.
+2026-03-24T11:37:12.4743791Z Mounting volumes.
+2026-03-24T11:37:12.4928204Z Nested mountpoint 
+2026-03-24T11:37:12.5791885Z Nested mountpoint volatile/logs
+2026-03-24T11:37:12.6068001Z Nested mountpoint 
+2026-03-24T11:37:12.6944654Z Nested mountpoint 
+2026-03-24T11:37:12.7877750Z Nested mountpoint 
+2026-03-24T11:37:13.8094032Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Finished pulling container image and mounting volumes for krtraintimetable. Allocatinng the rest of the container resources to finish container creation., DetailsLevel: INFO
+2026-03-24T11:37:13.8095410Z Creating container.
+2026-03-24T11:37:13.8096624Z Creating pipes for streaming container io.
+2026-03-24T11:37:13.8097699Z Creating stdout named pipe at /podr/container/pipe/cfcf400cfb70_krtraintimetable/stdout_ad0bafb0740b40f79e3709e9bdd8b6e4.
+2026-03-24T11:37:13.8398803Z Successfully created stdout named pipe at: /podr/container/pipe/cfcf400cfb70_krtraintimetable/stdout_ad0bafb0740b40f79e3709e9bdd8b6e4.
+2026-03-24T11:37:13.9071749Z Opening named pipe /podr/container/pipe/cfcf400cfb70_krtraintimetable/stdout_ad0bafb0740b40f79e3709e9bdd8b6e4 for reading in non-blocking mode.
+2026-03-24T11:37:13.9352999Z Successfully opened named pipe: /podr/container/pipe/cfcf400cfb70_krtraintimetable/stdout_ad0bafb0740b40f79e3709e9bdd8b6e4.
+2026-03-24T11:37:13.9440822Z Successfully removed non-blocking flag from /podr/container/pipe/cfcf400cfb70_krtraintimetable/stdout_ad0bafb0740b40f79e3709e9bdd8b6e4.
+2026-03-24T11:37:13.9453046Z Creating stderr named pipe at /podr/container/pipe/cfcf400cfb70_krtraintimetable/stderr_3ae127cba63744dcbc8b7a4f8efb3620.
+2026-03-24T11:37:13.9537561Z Successfully created stderr named pipe at: /podr/container/pipe/cfcf400cfb70_krtraintimetable/stderr_3ae127cba63744dcbc8b7a4f8efb3620.
+2026-03-24T11:37:13.9539660Z Opening named pipe /podr/container/pipe/cfcf400cfb70_krtraintimetable/stderr_3ae127cba63744dcbc8b7a4f8efb3620 for reading in non-blocking mode.
+2026-03-24T11:37:13.9541357Z Successfully opened named pipe: /podr/container/pipe/cfcf400cfb70_krtraintimetable/stderr_3ae127cba63744dcbc8b7a4f8efb3620.
+2026-03-24T11:37:13.9552102Z Successfully removed non-blocking flag from /podr/container/pipe/cfcf400cfb70_krtraintimetable/stderr_3ae127cba63744dcbc8b7a4f8efb3620.
+2026-03-24T11:37:13.9633610Z Creating container with image: appsvc/node:24-lts_20260115.4.tuxprod from registry: 10.1.0.5:13209 and fully qualified image name: 10.1.0.5:13209/appsvc/node:24-lts_20260115.4.tuxprod
+2026-03-24T11:37:17.6145997Z Starting container: cfcf400cfb70_krtraintimetable.
+2026-03-24T11:37:17.9806749Z Starting watchers and probes.
+2026-03-24T11:37:18.0664246Z Starting metrics collection.
+2026-03-24T11:37:18.0668886Z Container is running.
+2026-03-24T11:37:18.0669953Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container krtraintimetable successfully created and is running., DetailsLevel: INFO
+2026-03-24T11:37:18.8879673Z Container start method finished after 7015 ms.
+2026-03-24T11:37:18.9150971Z State: Starting, Action: InitiatingSiteWarmUpProbe, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container krtraintimetable successfully created and is running., DetailsLevel: INFO
+2026-03-24T11:37:18.9151436Z State: Starting, Action: WaitingForSiteWarmUpProbeSuccess, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: INFO
+2026-03-24T11:38:14.3117967Z Container has finished running with exit code: 127.
+2026-03-24T11:38:14.3192142Z Container is terminating. Grace period: 5 seconds.
+2026-03-24T11:38:14.3203862Z Stop and delete container. Retry count = 0
+2026-03-24T11:38:14.3220158Z Stopping container: cfcf400cfb70_krtraintimetable.
+2026-03-24T11:38:14.4671077Z Deleting container: cfcf400cfb70_krtraintimetable. Retry count = 0
+2026-03-24T11:38:14.9814301Z Container spec TerminationMessagePolicy  path 
+2026-03-24T11:38:14.9999484Z Container is terminated. Total time elapsed: 680 ms.
+2026-03-24T11:38:15.0000998Z Site container: krtraintimetable terminated during site startup.
+2026-03-24T11:38:15.0166694Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:35:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:38:15.0569030Z Site startup probe failed after 56.1297377 seconds.
+2026-03-24T11:38:15.4879303Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:38:15.5257837Z Failed to start site. Revert by stopping site.
+2026-03-24T11:38:15.5541550Z State: Stopping, Action: StoppingSite, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:38:15.5558158Z State: Stopping, Action: StoppingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:38:15.5558386Z Site: krtraintimetable stopped.
+2026-03-24T11:38:15.5831271Z State: Stopping, Action: UnmountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:38:16.4937009Z State: Stopping, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:38:16.8518115Z Site: krtraintimetable will be blocked for 2 minutes till 03/24/2026 11:40:16
+2026-03-24T11:38:16.8530909Z State: Blocked, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site: krtraintimetable will be blocked for 2 minutes till 03/24/2026 11:40:16, DetailsLevel: WARN
+2026-03-24T11:38:16.8535418Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/24/2026 11:38:16 (UTC), DetailsLevel: WARN
+2026-03-24T11:38:17.4694159Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/24/2026 11:38:16 (UTC), DetailsLevel: WARN
+2026-03-24T11:38:18.0861844Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:40:16, DetailsLevel: WARN
+2026-03-24T11:38:18.0865763Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:38:22.5390004Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:40:16, DetailsLevel: WARN
+2026-03-24T11:38:22.5391046Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:38:27.6716898Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:40:16, DetailsLevel: WARN
+2026-03-24T11:38:27.6717292Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:38:32.9271905Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:40:16, DetailsLevel: WARN
+2026-03-24T11:38:32.9272784Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:38:38.2673819Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:40:16, DetailsLevel: WARN
+2026-03-24T11:38:38.2674254Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:38:43.4378861Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:40:16, DetailsLevel: WARN
+2026-03-24T11:38:43.4381795Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:38:48.5511849Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:40:16, DetailsLevel: WARN
+2026-03-24T11:38:48.5512863Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:38:53.7400877Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:40:16, DetailsLevel: WARN
+2026-03-24T11:38:53.7403286Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:38:58.9583517Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:40:16, DetailsLevel: WARN
+2026-03-24T11:38:58.9587536Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:39:04.0995461Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:40:16, DetailsLevel: WARN
+2026-03-24T11:39:04.0995834Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:39:09.2508663Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:40:16, DetailsLevel: WARN
+2026-03-24T11:39:09.2509101Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:39:14.4305556Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:40:16, DetailsLevel: WARN
+2026-03-24T11:39:14.4369214Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:40:16.8526043Z Site: krtraintimetable is unblocked.
+2026-03-24T11:40:17.5570168Z State: Starting, Action: EstablishingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:40:16, DetailsLevel: WARN
+2026-03-24T11:40:19.5798172Z State: Starting, Action: StartingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:40:16, DetailsLevel: WARN
+2026-03-24T11:40:19.5806066Z Container start method called.
+2026-03-24T11:40:19.5822356Z State: Starting, Action: PullingImage, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pulling image 10.1.0.5:13209/appsvc/node:24-lts_20260115.4.tuxprod for krtraintimetable., DetailsLevel: INFO
+2026-03-24T11:40:19.5908001Z Establishing network.
+2026-03-24T11:40:19.5909716Z Pulling image: appsvc/node:24-lts_20260115.4.tuxprod.
+2026-03-24T11:40:20.3574717Z Container is starting.
+2026-03-24T11:40:20.3729746Z State: Starting, Action: MountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Mounting volumes for krtraintimetable., DetailsLevel: INFO
+2026-03-24T11:40:20.3733861Z Establishing user namespace if not established already.
+2026-03-24T11:40:20.3757741Z Establishing network if not established already.
+2026-03-24T11:40:20.3765032Z Mounting volumes.
+2026-03-24T11:40:20.3767513Z Nested mountpoint 
+2026-03-24T11:40:20.4429755Z Nested mountpoint volatile/logs
+2026-03-24T11:40:20.4616218Z Nested mountpoint 
+2026-03-24T11:40:20.4798265Z Nested mountpoint 
+2026-03-24T11:40:20.5086545Z Nested mountpoint 
+2026-03-24T11:40:21.1871657Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Finished pulling container image and mounting volumes for krtraintimetable. Allocatinng the rest of the container resources to finish container creation., DetailsLevel: INFO
+2026-03-24T11:40:21.1873300Z Creating container.
+2026-03-24T11:40:21.1874470Z Creating pipes for streaming container io.
+2026-03-24T11:40:21.1875521Z Creating stdout named pipe at /podr/container/pipe/e442b5454998_krtraintimetable/stdout_c524ed56251b4b19abfe8d3ff6069459.
+2026-03-24T11:40:21.1884131Z Successfully created stdout named pipe at: /podr/container/pipe/e442b5454998_krtraintimetable/stdout_c524ed56251b4b19abfe8d3ff6069459.
+2026-03-24T11:40:21.2059342Z Opening named pipe /podr/container/pipe/e442b5454998_krtraintimetable/stdout_c524ed56251b4b19abfe8d3ff6069459 for reading in non-blocking mode.
+2026-03-24T11:40:21.2067183Z Successfully opened named pipe: /podr/container/pipe/e442b5454998_krtraintimetable/stdout_c524ed56251b4b19abfe8d3ff6069459.
+2026-03-24T11:40:21.2068626Z Successfully removed non-blocking flag from /podr/container/pipe/e442b5454998_krtraintimetable/stdout_c524ed56251b4b19abfe8d3ff6069459.
+2026-03-24T11:40:21.2070291Z Creating stderr named pipe at /podr/container/pipe/e442b5454998_krtraintimetable/stderr_343d1283293d48578ce6c5f091be24f0.
+2026-03-24T11:40:21.2072204Z Successfully created stderr named pipe at: /podr/container/pipe/e442b5454998_krtraintimetable/stderr_343d1283293d48578ce6c5f091be24f0.
+2026-03-24T11:40:21.2073337Z Opening named pipe /podr/container/pipe/e442b5454998_krtraintimetable/stderr_343d1283293d48578ce6c5f091be24f0 for reading in non-blocking mode.
+2026-03-24T11:40:21.2074697Z Successfully opened named pipe: /podr/container/pipe/e442b5454998_krtraintimetable/stderr_343d1283293d48578ce6c5f091be24f0.
+2026-03-24T11:40:21.2075830Z Successfully removed non-blocking flag from /podr/container/pipe/e442b5454998_krtraintimetable/stderr_343d1283293d48578ce6c5f091be24f0.
+2026-03-24T11:40:21.2077215Z Creating container with image: appsvc/node:24-lts_20260115.4.tuxprod from registry: 10.1.0.5:13209 and fully qualified image name: 10.1.0.5:13209/appsvc/node:24-lts_20260115.4.tuxprod
+2026-03-24T11:40:22.3785566Z Starting container: e442b5454998_krtraintimetable.
+2026-03-24T11:40:22.5257512Z Starting watchers and probes.
+2026-03-24T11:40:22.5618692Z Starting metrics collection.
+2026-03-24T11:40:22.5628712Z Container is running.
+2026-03-24T11:40:22.5724806Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container krtraintimetable successfully created and is running., DetailsLevel: INFO
+2026-03-24T11:40:23.1041943Z Container start method finished after 3523 ms.
+2026-03-24T11:40:23.1044139Z State: Starting, Action: InitiatingSiteWarmUpProbe, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container krtraintimetable successfully created and is running., DetailsLevel: INFO
+2026-03-24T11:40:23.1044441Z State: Starting, Action: WaitingForSiteWarmUpProbeSuccess, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: INFO
+2026-03-24T11:41:05.6065346Z Container has finished running with exit code: 127.
+2026-03-24T11:41:05.6071457Z Container is terminating. Grace period: 5 seconds.
+2026-03-24T11:41:05.6084428Z Stop and delete container. Retry count = 0
+2026-03-24T11:41:05.6151647Z Stopping container: e442b5454998_krtraintimetable.
+2026-03-24T11:41:05.7117824Z Deleting container: e442b5454998_krtraintimetable. Retry count = 0
+2026-03-24T11:41:06.0224350Z Container spec TerminationMessagePolicy  path 
+2026-03-24T11:41:06.0291914Z Container is terminated. Total time elapsed: 415 ms.
+2026-03-24T11:41:06.0294615Z Site container: krtraintimetable terminated during site startup.
+2026-03-24T11:41:06.0296249Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:38:15, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:41:06.0981406Z Site startup probe failed after 42.9322039 seconds.
+2026-03-24T11:41:06.4143221Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:41:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:41:06.4436536Z Failed to start site. Revert by stopping site.
+2026-03-24T11:41:06.4438990Z State: Stopping, Action: StoppingSite, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:41:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:41:06.4613037Z State: Stopping, Action: StoppingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:41:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:41:06.4613562Z Site: krtraintimetable stopped.
+2026-03-24T11:41:06.4797684Z State: Stopping, Action: UnmountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:41:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:41:06.8797003Z State: Stopping, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:41:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:41:07.4036811Z Site: krtraintimetable will be blocked for 2 minutes till 03/24/2026 11:43:07
+2026-03-24T11:41:07.4039464Z State: Blocked, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:41:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site: krtraintimetable will be blocked for 2 minutes till 03/24/2026 11:43:07, DetailsLevel: WARN
+2026-03-24T11:41:07.4042900Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:41:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/24/2026 11:41:07 (UTC), DetailsLevel: WARN
+2026-03-24T11:41:07.6867193Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:41:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/24/2026 11:41:07 (UTC), DetailsLevel: WARN
+2026-03-24T11:41:07.8805097Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:41:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:43:07, DetailsLevel: WARN
+2026-03-24T11:41:07.8805557Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:43:07.4072958Z Site: krtraintimetable is unblocked.
+2026-03-24T11:51:09.1527652Z State: Starting, Action: EstablishingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:41:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:43:07, DetailsLevel: WARN
+2026-03-24T11:51:11.4124497Z State: Starting, Action: StartingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:41:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:43:07, DetailsLevel: WARN
+2026-03-24T11:51:11.4129741Z Container start method called.
+2026-03-24T11:51:11.4131373Z State: Starting, Action: PullingImage, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:41:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pulling image 10.1.0.5:13209/appsvc/node:24-lts_20260115.4.tuxprod for krtraintimetable., DetailsLevel: INFO
+2026-03-24T11:51:11.4148963Z Establishing network.
+2026-03-24T11:51:11.4226468Z Pulling image: appsvc/node:24-lts_20260115.4.tuxprod.
+2026-03-24T11:51:11.9721194Z Container is starting.
+2026-03-24T11:51:11.9729906Z State: Starting, Action: MountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:41:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Mounting volumes for krtraintimetable., DetailsLevel: INFO
+2026-03-24T11:51:11.9731890Z Establishing user namespace if not established already.
+2026-03-24T11:51:11.9790159Z Establishing network if not established already.
+2026-03-24T11:51:11.9792248Z Mounting volumes.
+2026-03-24T11:51:11.9809671Z Nested mountpoint 
+2026-03-24T11:51:12.0185261Z Nested mountpoint volatile/logs
+2026-03-24T11:51:12.0573634Z Nested mountpoint 
+2026-03-24T11:51:12.0588459Z Nested mountpoint 
+2026-03-24T11:51:12.1538103Z Nested mountpoint 
+2026-03-24T11:51:12.5389263Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:41:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Finished pulling container image and mounting volumes for krtraintimetable. Allocatinng the rest of the container resources to finish container creation., DetailsLevel: INFO
+2026-03-24T11:51:12.5390736Z Creating container.
+2026-03-24T11:51:12.5391850Z Creating pipes for streaming container io.
+2026-03-24T11:51:12.5392971Z Creating stdout named pipe at /podr/container/pipe/db6b8fd8a74a_krtraintimetable/stdout_61ac6ca696e74c6793903cfb032d6a62.
+2026-03-24T11:51:12.5395577Z Successfully created stdout named pipe at: /podr/container/pipe/db6b8fd8a74a_krtraintimetable/stdout_61ac6ca696e74c6793903cfb032d6a62.
+2026-03-24T11:51:12.5404194Z Opening named pipe /podr/container/pipe/db6b8fd8a74a_krtraintimetable/stdout_61ac6ca696e74c6793903cfb032d6a62 for reading in non-blocking mode.
+2026-03-24T11:51:12.5572052Z Successfully opened named pipe: /podr/container/pipe/db6b8fd8a74a_krtraintimetable/stdout_61ac6ca696e74c6793903cfb032d6a62.
+2026-03-24T11:51:12.5575725Z Successfully removed non-blocking flag from /podr/container/pipe/db6b8fd8a74a_krtraintimetable/stdout_61ac6ca696e74c6793903cfb032d6a62.
+2026-03-24T11:51:12.5578010Z Creating stderr named pipe at /podr/container/pipe/db6b8fd8a74a_krtraintimetable/stderr_1ac1e555a194423ca5d362e47aa68225.
+2026-03-24T11:51:12.5580070Z Successfully created stderr named pipe at: /podr/container/pipe/db6b8fd8a74a_krtraintimetable/stderr_1ac1e555a194423ca5d362e47aa68225.
+2026-03-24T11:51:12.5581144Z Opening named pipe /podr/container/pipe/db6b8fd8a74a_krtraintimetable/stderr_1ac1e555a194423ca5d362e47aa68225 for reading in non-blocking mode.
+2026-03-24T11:51:12.5655864Z Successfully opened named pipe: /podr/container/pipe/db6b8fd8a74a_krtraintimetable/stderr_1ac1e555a194423ca5d362e47aa68225.
+2026-03-24T11:51:12.5659006Z Successfully removed non-blocking flag from /podr/container/pipe/db6b8fd8a74a_krtraintimetable/stderr_1ac1e555a194423ca5d362e47aa68225.
+2026-03-24T11:51:12.5661107Z Creating container with image: appsvc/node:24-lts_20260115.4.tuxprod from registry: 10.1.0.5:13209 and fully qualified image name: 10.1.0.5:13209/appsvc/node:24-lts_20260115.4.tuxprod
+2026-03-24T11:51:13.9263937Z Starting container: db6b8fd8a74a_krtraintimetable.
+2026-03-24T11:51:14.1384412Z Starting watchers and probes.
+2026-03-24T11:51:14.1486827Z Starting metrics collection.
+2026-03-24T11:51:14.1488915Z Container is running.
+2026-03-24T11:51:14.1556915Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:41:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container krtraintimetable successfully created and is running., DetailsLevel: INFO
+2026-03-24T11:51:14.2981661Z Container start method finished after 2884 ms.
+2026-03-24T11:51:14.2991544Z State: Starting, Action: InitiatingSiteWarmUpProbe, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:41:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container krtraintimetable successfully created and is running., DetailsLevel: INFO
+2026-03-24T11:51:14.2992382Z State: Starting, Action: WaitingForSiteWarmUpProbeSuccess, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:41:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: INFO
+2026-03-24T11:51:58.2424535Z Container has finished running with exit code: 127.
+2026-03-24T11:51:58.2486166Z Container is terminating. Grace period: 5 seconds.
+2026-03-24T11:51:58.2510517Z Stop and delete container. Retry count = 0
+2026-03-24T11:51:58.2512093Z Stopping container: db6b8fd8a74a_krtraintimetable.
+2026-03-24T11:51:58.3813385Z Deleting container: db6b8fd8a74a_krtraintimetable. Retry count = 0
+2026-03-24T11:51:58.6521354Z Container spec TerminationMessagePolicy  path 
+2026-03-24T11:51:58.6601388Z Container is terminated. Total time elapsed: 410 ms.
+2026-03-24T11:51:58.6607620Z Site container: krtraintimetable terminated during site startup.
+2026-03-24T11:51:58.6632100Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:41:06, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:51:58.7877045Z Site startup probe failed after 44.4855022 seconds.
+2026-03-24T11:51:58.9796860Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:51:58, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:51:59.0090978Z Failed to start site. Revert by stopping site.
+2026-03-24T11:51:59.0193719Z State: Stopping, Action: StoppingSite, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:51:58, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:51:59.0211377Z State: Stopping, Action: StoppingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:51:58, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:51:59.0211646Z Site: krtraintimetable stopped.
+2026-03-24T11:51:59.0759305Z State: Stopping, Action: UnmountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:51:58, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:51:59.4799753Z State: Stopping, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:51:58, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T11:51:59.9464693Z Site: krtraintimetable will be blocked for 2 minutes till 03/24/2026 11:53:59
+2026-03-24T11:51:59.9549905Z State: Blocked, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:51:58, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site: krtraintimetable will be blocked for 2 minutes till 03/24/2026 11:53:59, DetailsLevel: WARN
+2026-03-24T11:51:59.9665818Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:51:58, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/24/2026 11:51:59 (UTC), DetailsLevel: WARN
+2026-03-24T11:52:00.2483377Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:51:58, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/24/2026 11:51:59 (UTC), DetailsLevel: WARN
+2026-03-24T11:52:01.0341612Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:51:58, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:53:59, DetailsLevel: WARN
+2026-03-24T11:52:01.0342031Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:52:44.4924424Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:51:58, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:53:59, DetailsLevel: WARN
+2026-03-24T11:52:44.4926154Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:52:44.8159637Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:51:58, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:53:59, DetailsLevel: WARN
+2026-03-24T11:52:44.8161869Z Start site prohibitted because the site is being blocked.
+2026-03-24T11:53:59.9460116Z Site: krtraintimetable is unblocked.
+2026-03-24T12:34:05.5701385Z State: Starting, Action: EstablishingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:51:58, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:53:59, DetailsLevel: WARN
+2026-03-24T12:34:11.6588454Z State: Starting, Action: StartingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:51:58, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/24/2026 11:53:59, DetailsLevel: WARN
+2026-03-24T12:34:11.6651145Z Container start method called.
+2026-03-24T12:34:11.6678591Z State: Starting, Action: PullingImage, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:51:58, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pulling image 10.1.0.5:13209/appsvc/node:24-lts_20260115.4.tuxprod for krtraintimetable., DetailsLevel: INFO
+2026-03-24T12:34:11.6736355Z Establishing network.
+2026-03-24T12:34:11.6819756Z Pulling image: appsvc/node:24-lts_20260115.4.tuxprod.
+2026-03-24T12:34:12.6448031Z Container is starting.
+2026-03-24T12:34:12.6453042Z State: Starting, Action: MountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:51:58, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Mounting volumes for krtraintimetable., DetailsLevel: INFO
+2026-03-24T12:34:12.6456841Z Establishing user namespace if not established already.
+2026-03-24T12:34:12.6476945Z Establishing network if not established already.
+2026-03-24T12:34:12.6478899Z Mounting volumes.
+2026-03-24T12:34:12.6724891Z Nested mountpoint 
+2026-03-24T12:34:12.7513601Z Nested mountpoint volatile/logs
+2026-03-24T12:34:12.7764981Z Nested mountpoint 
+2026-03-24T12:34:12.8716476Z Nested mountpoint 
+2026-03-24T12:34:12.8812046Z Nested mountpoint 
+2026-03-24T12:34:13.3990531Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:51:58, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Finished pulling container image and mounting volumes for krtraintimetable. Allocatinng the rest of the container resources to finish container creation., DetailsLevel: INFO
+2026-03-24T12:34:13.3995357Z Creating container.
+2026-03-24T12:34:13.3997214Z Creating pipes for streaming container io.
+2026-03-24T12:34:13.4002820Z Creating stdout named pipe at /podr/container/pipe/c544c7a0d6dc_krtraintimetable/stdout_e712475bd606420b842bf6a8103647d7.
+2026-03-24T12:34:13.4011508Z Successfully created stdout named pipe at: /podr/container/pipe/c544c7a0d6dc_krtraintimetable/stdout_e712475bd606420b842bf6a8103647d7.
+2026-03-24T12:34:13.4018069Z Opening named pipe /podr/container/pipe/c544c7a0d6dc_krtraintimetable/stdout_e712475bd606420b842bf6a8103647d7 for reading in non-blocking mode.
+2026-03-24T12:34:13.4178582Z Successfully opened named pipe: /podr/container/pipe/c544c7a0d6dc_krtraintimetable/stdout_e712475bd606420b842bf6a8103647d7.
+2026-03-24T12:34:13.4186340Z Successfully removed non-blocking flag from /podr/container/pipe/c544c7a0d6dc_krtraintimetable/stdout_e712475bd606420b842bf6a8103647d7.
+2026-03-24T12:34:13.4278024Z Creating stderr named pipe at /podr/container/pipe/c544c7a0d6dc_krtraintimetable/stderr_ca3d5f5df75e4d1e8f65a8c620a2d2f0.
+2026-03-24T12:34:13.4285376Z Successfully created stderr named pipe at: /podr/container/pipe/c544c7a0d6dc_krtraintimetable/stderr_ca3d5f5df75e4d1e8f65a8c620a2d2f0.
+2026-03-24T12:34:13.4297441Z Opening named pipe /podr/container/pipe/c544c7a0d6dc_krtraintimetable/stderr_ca3d5f5df75e4d1e8f65a8c620a2d2f0 for reading in non-blocking mode.
+2026-03-24T12:34:13.4305925Z Successfully opened named pipe: /podr/container/pipe/c544c7a0d6dc_krtraintimetable/stderr_ca3d5f5df75e4d1e8f65a8c620a2d2f0.
+2026-03-24T12:34:13.4312955Z Successfully removed non-blocking flag from /podr/container/pipe/c544c7a0d6dc_krtraintimetable/stderr_ca3d5f5df75e4d1e8f65a8c620a2d2f0.
+2026-03-24T12:34:13.4489615Z Creating container with image: appsvc/node:24-lts_20260115.4.tuxprod from registry: 10.1.0.5:13209 and fully qualified image name: 10.1.0.5:13209/appsvc/node:24-lts_20260115.4.tuxprod
+2026-03-24T12:34:14.7049128Z Starting container: c544c7a0d6dc_krtraintimetable.
+2026-03-24T12:34:14.8970300Z Starting watchers and probes.
+2026-03-24T12:34:14.9243036Z Starting metrics collection.
+2026-03-24T12:34:14.9339825Z Container is running.
+2026-03-24T12:34:14.9341955Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:51:58, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container krtraintimetable successfully created and is running., DetailsLevel: INFO
+2026-03-24T12:34:15.4036207Z Container start method finished after 3661 ms.
+2026-03-24T12:34:15.4664730Z State: Starting, Action: InitiatingSiteWarmUpProbe, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:51:58, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container krtraintimetable successfully created and is running., DetailsLevel: INFO
+2026-03-24T12:34:15.4665265Z State: Starting, Action: WaitingForSiteWarmUpProbeSuccess, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:51:58, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: INFO
+2026-03-24T12:35:16.0652356Z Container has finished running with exit code: 127.
+2026-03-24T12:35:16.0721995Z Container is terminating. Grace period: 5 seconds.
+2026-03-24T12:35:16.1033979Z Stop and delete container. Retry count = 0
+2026-03-24T12:35:16.1049872Z Stopping container: c544c7a0d6dc_krtraintimetable.
+2026-03-24T12:35:16.2668397Z Deleting container: c544c7a0d6dc_krtraintimetable. Retry count = 0
+2026-03-24T12:35:18.0869361Z Container spec TerminationMessagePolicy  path 
+2026-03-24T12:35:18.0884188Z Container is terminated. Total time elapsed: 2003 ms.
+2026-03-24T12:35:18.0953927Z Site container: krtraintimetable terminated during site startup.
+2026-03-24T12:35:18.1240756Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 11:51:58, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T12:35:18.3054856Z Site startup probe failed after 62.7668118 seconds.
+2026-03-24T12:35:18.6769958Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 12:35:18, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T12:35:18.6964121Z Failed to start site. Revert by stopping site.
+2026-03-24T12:35:18.7153818Z State: Stopping, Action: StoppingSite, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 12:35:18, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T12:35:18.7250967Z State: Stopping, Action: StoppingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 03/24/2026 12:35:18, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: krtraintimetable terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-24T12:35:18.7251299Z Site: krtraintimetable stopped.
